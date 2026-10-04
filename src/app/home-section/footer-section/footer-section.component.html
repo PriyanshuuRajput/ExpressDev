@@ -1,0 +1,40 @@
+<footer class="footer-section py-5">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        <a class="brand" href="#top" aria-label="ExpressDev Technologies home">
+          <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
+            <rect class="mark-bg" width="40" height="40" rx="11" />
+            <path class="mark-letter" d="M21 11H13V29H21M13 20H20" />
+            <path class="mark-arrow" d="M21 27L29 19M23 19H29V25" />
+          </svg>
+          <span class="brand-name">
+            <span>ExpressDev</span>
+            <span class="brand-accent">Technologies</span>
+          </span>
+        </a>
+        <p class="brand-description mt-3">
+          Software, web and IT services for growing companies.
+        </p>
+      </div>
+      @for (column of columns; track column.title) {
+        <div class="col-6 col-lg-2">
+          <h2 class="footer-heading">{{ column.title }}</h2>
+          @for (link of column.links; track link) {
+            <a class="footer-link" href="#services">{{ link }}</a>
+          }
+        </div>
+      }
+      <div class="col-md-6 col-lg-4">
+        <h2 class="footer-heading">Contact</h2>
+        <a class="footer-link" href="mailto:hello@expressdev.example">hello&#64;expressdev.example</a>
+        <a class="footer-link" href="tel:+910000000000">+91 00000 00000</a>
+        <span class="footer-link">Delhi, India</span>
+        <a mat-button class="footer-cta mt-2" href="#contact">Start a conversation</a>
+      </div>
+    </div>
+    <div class="copyright mt-4 pt-3">
+      © {{ year }} ExpressDev Technologies. All rights reserved.
+    </div>
+  </div>
+</footer>

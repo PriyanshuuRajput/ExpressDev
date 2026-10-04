@@ -1,0 +1,18 @@
+<section class="industries-section py-5">
+  <div class="container">
+    <div class="row align-items-end g-3 mb-4">
+      <div class="col-lg-7">
+        <span class="eyebrow">WHO WE HELP</span>
+        <h2 class="section-title mt-2 mb-0">Industries we know well</h2>
+      </div>
+      <p class="col-lg-5 section-copy mb-0">
+        Domain experience means fewer questions and faster delivery.
+      </p>
+    </div>
+    <mat-chip-set aria-label="Industries served" class="industry-list">
+      @for (industry of industries; track industry) {
+        <mat-chip>{{ industry }}</mat-chip>
+      }
+    </mat-chip-set>
+  </div>
+</section>

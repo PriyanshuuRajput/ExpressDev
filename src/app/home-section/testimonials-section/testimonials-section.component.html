@@ -1,0 +1,24 @@
+<section class="testimonials-section py-5">
+  <div class="container">
+    <div class="section-heading mb-4">
+      <span class="eyebrow">CLIENT STORIES</span>
+      <h2 class="section-title mt-2">What clients say</h2>
+    </div>
+    <div class="row g-4">
+      @for (testimonial of testimonials; track testimonial.a) {
+        <div class="col-md-6 col-xl-4">
+          <mat-card appearance="outlined" class="quote-card h-100 p-3 rounded-4">
+            <mat-card-content class="d-flex h-100 flex-column p-0">
+              <div class="quote-mark" aria-hidden="true">“</div>
+              <blockquote class="quote-text">{{ testimonial.q }}</blockquote>
+              <div class="quote-author mt-auto">
+                <strong>{{ testimonial.a }}</strong>
+                <span>{{ testimonial.r }}</span>
+              </div>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      }
+    </div>
+  </div>
+</section>

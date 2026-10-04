@@ -1,0 +1,77 @@
+<section id="contact" class="contact-section py-5">
+  <div class="container">
+    <div class="row g-4 align-items-start">
+      <div class="col-lg-5 contact-copy">
+        <span class="eyebrow">LET’S BUILD SOMETHING</span>
+        <h2 class="section-title mt-2">Tell us about your project</h2>
+        <p class="section-description">
+          We reply within one business day with next steps and a rough estimate.
+        </p>
+        <div class="contact-details">
+          <p><span aria-hidden="true">✉</span> hello&#64;expressdev.example</p>
+          <p><span aria-hidden="true">☎</span> +91 00000 00000</p>
+          <p><span aria-hidden="true">⌖</span> Delhi, India · working with clients worldwide</p>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        @if (sent()) {
+          <div class="success-message p-4 rounded-4" role="status">
+            <h3>Thanks, {{ model.name }}.</h3>
+            <p class="mb-0">We’ll write to {{ model.email }} within one business day.</p>
+          </div>
+        } @else {
+          <form #form="ngForm" class="row g-3 contact-form" (ngSubmit)="submit(form.valid)">
+            <div class="col-md-6">
+              <label class="form-label" for="contact-name">Your name</label>
+              <input
+                id="contact-name"
+                class="form-control"
+                name="name"
+                autocomplete="name"
+                [(ngModel)]="model.name"
+                required
+              >
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="contact-email">Work email</label>
+              <input
+                id="contact-email"
+                class="form-control"
+                name="email"
+                type="email"
+                autocomplete="email"
+                [(ngModel)]="model.email"
+                required
+                email
+              >
+            </div>
+            <div class="col-12">
+              <label class="form-label" for="contact-service">Service needed</label>
+              <select id="contact-service" class="form-select" name="service" [(ngModel)]="model.service">
+                <option value="">Choose a service</option>
+                @for (service of services; track service.t) {
+                  <option [value]="service.t">{{ service.t }}</option>
+                }
+              </select>
+            </div>
+            <div class="col-12">
+              <label class="form-label" for="contact-details">Project details</label>
+              <textarea
+                id="contact-details"
+                class="form-control"
+                name="details"
+                rows="4"
+                [(ngModel)]="model.details"
+                required
+              ></textarea>
+            </div>
+            <div class="col-12">
+              <button mat-flat-button class="submit-button" type="submit">Send request</button>
+            </div>
+          </form>
+        }
+      </div>
+    </div>
+  </div>
+</section>

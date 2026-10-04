@@ -1,0 +1,253 @@
+@import '@angular/material/prebuilt-themes/azure-blue.css';
+
+:root {
+    --ink: #373A36;
+    --ink2: #E6E2DD;
+    --line: rgb(55 58 54 / 16%);
+    --cyan: #D48166;
+    --amber: #E6E2DD;
+    --mint: #D48166;
+    --coral: #D48166;
+    --paper: #F0F0F0;
+    --text: #373A36;
+    --mute: rgb(55 58 54 / 76%);
+    --lmute: rgb(55 58 54 / 72%);
+
+    --mat-sys-primary: #D48166;
+    --mat-sys-on-primary: #373A36;
+    --mat-sys-primary-container: rgb(212 129 102 / 18%);
+    --mat-sys-on-primary-container: #373A36;
+    --mat-sys-inverse-primary: #D48166;
+    --mat-sys-secondary: #E6E2DD;
+    --mat-sys-on-secondary: #373A36;
+    --mat-sys-secondary-container: #E6E2DD;
+    --mat-sys-on-secondary-container: #373A36;
+    --mat-sys-tertiary: #D48166;
+    --mat-sys-on-tertiary: #373A36;
+    --mat-sys-error: #D48166;
+    --mat-sys-on-error: #373A36;
+    --mat-sys-background: #F0F0F0;
+    --mat-sys-on-background: #373A36;
+    --mat-sys-surface: #F0F0F0;
+    --mat-sys-surface-bright: #F0F0F0;
+    --mat-sys-surface-container: #F0F0F0;
+    --mat-sys-surface-container-high: #E6E2DD;
+    --mat-sys-surface-container-highest: #E6E2DD;
+    --mat-sys-surface-container-low: #F0F0F0;
+    --mat-sys-surface-container-lowest: #F0F0F0;
+    --mat-sys-surface-variant: #E6E2DD;
+    --mat-sys-on-surface: #373A36;
+    --mat-sys-on-surface-variant: #373A36;
+    --mat-sys-outline: rgb(55 58 54 / 38%);
+    --mat-sys-outline-variant: rgb(55 58 54 / 18%);
+    --mat-sys-surface-tint: #D48166;
+
+    --bs-body-color: var(--text);
+    --bs-body-bg: var(--paper);
+    --bs-primary: var(--cyan);
+    --bs-secondary: var(--amber);
+    --bs-border-color: rgb(55 58 54 / 16%);
+    --bs-link-color: var(--cyan);
+    --bs-link-hover-color: var(--ink);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0
+}
+
+.container {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+html {
+    scroll-behavior: smooth
+}
+
+body {
+    color: var(--text);
+    background: var(--paper);
+    line-height: 1.6
+}
+
+h1,
+h2,
+h3 {
+    line-height: 1.12;
+    letter-spacing: -.025em
+}
+
+.w {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 24px
+}
+
+.sec {
+    padding: 96px 0
+}
+
+.dark {
+    background: var(--paper);
+    color: var(--ink)
+}
+
+.paper {
+    background: var(--paper)
+}
+
+h2 {
+    font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+    max-width: 720px
+}
+
+.sub {
+    color: var(--mute);
+    margin: 12px 0 44px;
+    max-width: 620px
+}
+
+.dark .sub {
+    color: var(--mute)
+}
+
+.btn {
+    display: inline-block;
+    padding: 13px 24px;
+    border-radius: 999px;
+    font-weight: 700;
+    font-size: .95rem;
+    text-decoration: none;
+    border: 2px solid transparent;
+    cursor: pointer
+}
+
+.btn.p {
+    background: var(--cyan);
+    color: var(--ink)
+}
+
+.btn:not(.g):hover {
+    background: var(--mint);
+    color: var(--ink)
+}
+
+.btn.p:hover {
+    background: var(--mint);
+    color: var(--ink)
+}
+
+.btn.g {
+    border-color: rgb(55 58 54 / 32%);
+    color: var(--ink)
+}
+
+.btn.g:hover {
+    background: rgb(212 129 102 / 12%)
+}
+
+.grid {
+    display: grid;
+    gap: 20px
+}
+
+.g3 {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr))
+}
+
+.g4 {
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr))
+}
+
+.card {
+    background: var(--paper);
+    border: 1px solid rgb(55 58 54 / 16%);
+    border-radius: 16px;
+    padding: 26px
+}
+
+.card:hover {
+    border-color: var(--cyan)
+}
+
+.card p {
+    color: var(--mute);
+    font-size: .95rem
+}
+
+.dark .card {
+    background: var(--paper);
+    border-color: var(--line)
+}
+
+.dark .card p {
+    color: var(--mute)
+}
+
+.ic {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    background: rgb(212 129 102 / 16%);
+    font-size: 1.3rem;
+    margin-bottom: 14px
+}
+
+.chip {
+    display: inline-block;
+    padding: 7px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    color: var(--ink);
+    background: rgb(212 129 102 / 16%);
+    font-size: .9rem;
+    margin: 0 8px 10px 0
+}
+
+.tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 28px
+}
+
+.tabs button {
+    padding: 9px 18px;
+    border-radius: 999px;
+    border: 1px solid rgb(55 58 54 / 24%);
+    background: var(--paper);
+    font-weight: 600;
+    font-size: .9rem;
+    cursor: pointer
+}
+
+.tabs button.on {
+    background: var(--cyan);
+    color: var(--ink);
+    border-color: var(--cyan)
+}
+
+:focus-visible {
+    outline: 3px solid var(--amber);
+    outline-offset: 3px
+}
+
+@media (prefers-reduced-motion:reduce) {
+    * {
+        animation: none !important;
+        scroll-behavior: auto
+    }
+}
+
+body,
+body * {
+    font-family: 'Montserrat', sans-serif !important
+}
+
+pre,
+pre * {
+    font-family: ui-monospace, Menlo, Consolas, monospace !important
+}

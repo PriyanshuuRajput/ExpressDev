@@ -1,0 +1,22 @@
+<section id="process" class="process-section py-5">
+  <div class="container">
+    <div class="section-heading mb-4">
+      <span class="eyebrow">A CLEAR PATH FORWARD</span>
+      <h2 class="section-title mt-2">How a project runs, start to support</h2>
+      <p class="section-copy">Five stages, each with a clear deliverable you approve.</p>
+    </div>
+    <ol class="row g-3 list-unstyled mb-0">
+      @for (step of steps; track step.t; let index = $index) {
+        <li class="col-sm-6 col-lg">
+          <mat-card appearance="outlined" class="step-card h-100 p-3 rounded-4">
+            <mat-card-content class="p-0">
+              <span class="step-number">{{ (index + 1).toString().padStart(2, '0') }}</span>
+              <h3 class="step-title mt-3">{{ step.t }}</h3>
+              <p class="step-description mb-0">{{ step.d }}</p>
+            </mat-card-content>
+          </mat-card>
+        </li>
+      }
+    </ol>
+  </div>
+</section>

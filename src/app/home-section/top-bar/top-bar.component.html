@@ -1,0 +1,48 @@
+<header class="topbar">
+  <mat-toolbar class="toolbar">
+    <div class="toolbar-content">
+      <a class="brand" href="#top" aria-label="ExpressDev Technologies home">
+        <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
+          <rect class="mark-bg" width="40" height="40" rx="11" />
+          <path class="mark-letter" d="M21 11H13V29H21M13 20H20" />
+          <path class="mark-arrow" d="M21 27L29 19M23 19H29V25" />
+        </svg>
+        <span class="brand-name">
+          <span>ExpressDev</span>
+          <span class="brand-accent ms-4">Technologies</span>
+        </span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main navigation">
+        @for (link of links; track link[0]) {
+          <a mat-button [href]="link[1]">{{ link[0] }}</a>
+        }
+        <a mat-flat-button class="quote-link" href="#contact">Get a quote</a>
+      </nav>
+
+      <button
+        mat-icon-button
+        class="menu-toggle"
+        type="button"
+        aria-label="Toggle navigation"
+        [attr.aria-expanded]="menuOpen()"
+        (click)="menuOpen.set(!menuOpen())"
+      >
+        <span class="menu-icon" [class.open]="menuOpen()" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+      </button>
+    </div>
+  </mat-toolbar>
+
+  @if (menuOpen()) {
+    <nav class="mobile-nav" aria-label="Main navigation">
+      @for (link of links; track link[0]) {
+        <a mat-button [href]="link[1]" (click)="menuOpen.set(false)">{{ link[0] }}</a>
+      }
+      <a mat-flat-button class="quote-link" href="#contact" (click)="menuOpen.set(false)">
+        Get a quote
+      </a>
+    </nav>
+  }
+</header>

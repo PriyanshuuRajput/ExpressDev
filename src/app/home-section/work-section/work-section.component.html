@@ -1,0 +1,27 @@
+<section id="work" class="work-section py-5">
+  <div class="container">
+    <div class="section-heading mb-4">
+      <span class="eyebrow">SELECTED PROJECTS</span>
+      <h2 class="section-title mt-2">Recent work</h2>
+      <p class="section-copy">Products we designed, built and still support.</p>
+    </div>
+    <div class="row g-4">
+      @for (project of projects; track project.n) {
+        <div class="col-md-6">
+          <mat-card appearance="outlined" class="project-card h-100 p-3 rounded-4">
+            <mat-card-content class="p-0">
+              <span class="project-industry">{{ project.k }}</span>
+              <h3 class="project-title mt-2">{{ project.n }}</h3>
+              <p class="project-description">{{ project.d }}</p>
+              <mat-chip-set [attr.aria-label]="project.n + ' results'">
+                @for (metric of project.m; track metric) {
+                  <mat-chip>{{ metric }}</mat-chip>
+                }
+              </mat-chip-set>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      }
+    </div>
+  </div>
+</section>

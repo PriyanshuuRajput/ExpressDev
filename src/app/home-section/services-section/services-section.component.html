@@ -1,0 +1,60 @@
+<section id="services" class="services-section py-5">
+  <div class="container">
+    <div class="section-heading mb-4">
+      <span class="eyebrow">WHAT WE DO</span>
+      <h2>Every IT service under one roof</h2>
+      <p>
+        Start with one service or combine several under a single contract.
+        One accountable team keeps every part of your technology moving forward.
+      </p>
+    </div>
+
+    <div class="service-filters d-flex flex-wrap gap-2 mb-4" role="group" aria-label="Filter services by category">
+      @for (category of categories; track category) {
+        <button
+          mat-stroked-button
+          type="button"
+          [class.selected]="selectedCategory() === category"
+          [attr.aria-pressed]="selectedCategory() === category"
+          (click)="selectCategory(category)"
+        >
+          {{ category }}
+        </button>
+      }
+    </div>
+
+    <div class="row g-4">
+      @for (service of services(); track service.t) {
+        <div class="col-md-6 col-xl-4">
+          <mat-card appearance="outlined" class="service-card h-100 p-3 rounded-4">
+            <mat-card-header class="d-flex align-items-center justify-content-between p-0 mb-3">
+              <span class="service-icon d-inline-flex align-items-center justify-content-center rounded-3" aria-hidden="true">
+                {{ service.i }}
+              </span>
+              <mat-chip-set aria-label="Service category">
+                <mat-chip>{{ service.c }}</mat-chip>
+              </mat-chip-set>
+            </mat-card-header>
+            <mat-card-content class="d-flex flex-column flex-grow-1 p-0">
+              <h3 mat-card-title class="service-title mb-2">{{ service.t }}</h3>
+              <p class="service-description mb-3">{{ service.d }}</p>
+              <a
+                mat-button
+                class="service-link mt-auto align-self-start"
+                href="#contact"
+                [attr.aria-label]="'Ask us about ' + service.t"
+              >
+                Talk to our team <span aria-hidden="true">→</span>
+              </a>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      }
+    </div>
+
+    <div class="services-cta d-flex flex-column flex-sm-row align-items-sm-center justify-content-between gap-3 mt-4 p-4 rounded-4">
+      <p class="mb-0">Not sure where to start? We’ll help you find the right solution.</p>
+      <a mat-flat-button href="#contact">Talk to an expert</a>
+    </div>
+  </div>
+</section>

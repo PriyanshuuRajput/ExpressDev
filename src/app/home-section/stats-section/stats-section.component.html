@@ -1,0 +1,12 @@
+<section class="stats-section py-4">
+  <div class="container">
+    <div class="row g-4 text-center text-md-start">
+      @for (stat of stats; track stat[1]) {
+        <div class="col-6 col-lg-3">
+          <div class="stat-value">{{ stat[0] }}</div>
+          <div class="stat-label">{{ stat[1] }}</div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

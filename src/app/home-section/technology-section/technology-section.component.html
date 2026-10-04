@@ -1,0 +1,23 @@
+<section class="technology-section py-5">
+  <div class="container">
+    <div class="section-heading mb-4">
+      <span class="eyebrow">THE RIGHT TOOLS FOR THE JOB</span>
+      <h2 class="section-title mt-2">Technology we work with</h2>
+      <p class="section-copy">
+        Modern, well-supported tools, chosen for your product and not our habits.
+      </p>
+    </div>
+    <div class="row g-4">
+      @for (group of groups; track group[0]) {
+        <div class="col-sm-6 col-lg-3">
+          <h3 class="technology-group">{{ group[0] }}</h3>
+          <mat-chip-set [attr.aria-label]="group[0] + ' technologies'">
+            @for (technology of group[1]; track technology) {
+              <mat-chip>{{ technology }}</mat-chip>
+            }
+          </mat-chip-set>
+        </div>
+      }
+    </div>
+  </div>
+</section>

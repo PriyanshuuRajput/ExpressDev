@@ -1,0 +1,45 @@
+<section id="pricing" class="pricing-section py-5">
+  <div class="container">
+    <div class="section-heading mb-4">
+      <span class="eyebrow">SIMPLE, TRANSPARENT STARTING POINTS</span>
+      <h2 class="section-title mt-2">Pricing that fits your stage</h2>
+      <p class="section-copy">
+        Every quote is fixed after discovery. Ranges below are typical starting points.
+      </p>
+    </div>
+    <div class="row g-4 align-items-stretch">
+      @for (plan of plans; track plan.n) {
+        <div class="col-lg-4">
+          <mat-card appearance="outlined" class="plan-card h-100 p-3 rounded-4" [class.featured]="plan.hot">
+            <mat-card-content class="d-flex h-100 flex-column p-0">
+              @if (plan.hot) {
+                <span class="popular-badge align-self-start mb-2">MOST POPULAR</span>
+              }
+              <h3 class="plan-name">{{ plan.n }}</h3>
+              <p class="plan-description">{{ plan.d }}</p>
+              <div class="plan-price">
+                <span>{{ plan.p }}</span>
+                <small>{{ plan.u }}</small>
+              </div>
+              <ul class="list-group list-group-flush plan-features mb-4">
+                @for (feature of plan.f; track feature) {
+                  <li class="list-group-item">
+                    <span aria-hidden="true">✓</span>{{ feature }}
+                  </li>
+                }
+              </ul>
+              <a
+                mat-flat-button
+                class="plan-action mt-auto"
+                [class.featured-action]="plan.hot"
+                href="#contact"
+              >
+                Talk to us
+              </a>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      }
+    </div>
+  </div>
+</section>
