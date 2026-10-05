@@ -3,6 +3,9 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true,
+    "types": [
+      "jasmine"
+    ],
     "lib": [
       "ES2022",
       "dom"
