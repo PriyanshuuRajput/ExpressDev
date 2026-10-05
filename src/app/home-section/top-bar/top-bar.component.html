@@ -1,48 +1,112 @@
-<header class="topbar">
-  <mat-toolbar class="toolbar">
-    <div class="toolbar-content">
-      <a class="brand" href="#top" aria-label="ExpressDev Technologies home">
-        <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true">
-          <rect class="mark-bg" width="40" height="40" rx="11" />
-          <path class="mark-letter" d="M21 11H13V29H21M13 20H20" />
-          <path class="mark-arrow" d="M21 27L29 19M23 19H29V25" />
-        </svg>
-        <span class="brand-name">
-          <span>ExpressDev</span>
-          <span class="brand-accent ms-4">Technologies</span>
-        </span>
-      </a>
+<header class="topbar" [class.is-scrolled]="scrolled()" id="top">
 
-      <nav class="desktop-nav" aria-label="Main navigation">
-        @for (link of links; track link[0]) {
-          <a mat-button [href]="link[1]">{{ link[0] }}</a>
+  <div class="topbar__strip d-none d-xl-block">
+    <div class="container d-flex align-items-center justify-content-between">
+      <div class="topbar__contacts d-flex align-items-center">
+        <a href="tel:+917500151158"><i class="bi bi-telephone-fill" aria-hidden="true"></i><span>+91 7500151158</span></a>
+        <a href="mailto:support@expressdev.in"><i class="bi bi-envelope-fill" aria-hidden="true"></i><span>support&#64;expressdev.in</span></a>
+        <span class="topbar__location"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i><span>Remote · Global Clients</span></span>
+        <span class="topbar__availability"><span class="topbar__availability-dot" aria-hidden="true"></span>We're available for new projects</span>
+      </div>
+      <div class="topbar__meta d-flex align-items-center">
+        <a class="social social--linkedin" href="#" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        <a class="social social--github" href="#" aria-label="GitHub"><i class="bi bi-github"></i></a>
+        <a class="social social--x" href="#" aria-label="X"><i class="bi bi-twitter-x"></i></a>
+        <a class="social social--youtube" href="#" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+        <span class="vr-line"></span>
+        <a class="client-portal" href="mailto:support@expressdev.in?subject=Client%20portal%20access"><i class="bi bi-person" aria-hidden="true"></i><span>Client Portal</span></a>
+      </div>
+    </div>
+  </div>
+
+  <mat-toolbar class="topbar__main">
+    <div class="container d-flex align-items-center">
+
+      <a class="brand" href="#top" aria-label="ExpressDev Technologies home">
+        <svg class="brand__mark" viewBox="0 0 100 100" aria-hidden="true">
+          <path d="M8 20H49L38 31H8Z" fill="#D98C70"/>
+          <path d="M8 44H39L28 55H8Z" fill="#C87558"/>
+          <path d="M8 68H29L18 79H8Z" fill="#D98C70"/>
+          <path d="M48 17L81 50L48 83L38 73L61 50L38 27Z" fill="#292E2B"/>
+        </svg>
+        <span class="brand__name"><span>Express<em>Dev</em></span><small>Technologies</small></span>
+      </a>
+      <span class="divider d-none d-xl-block"></span>
+
+      <nav class="desktop-nav d-none d-xl-flex align-items-center flex-grow-1" aria-label="Main navigation">
+        @for (item of nav; track item.label) {
+          @if (item.children) {
+            <button mat-button class="nav-link" [matMenuTriggerFor]="menu"
+                    (mouseenter)="hoveredNavItem.set(item.label)" (mouseleave)="hoveredNavItem.set('')"
+                    (focus)="hoveredNavItem.set(item.label)" (blur)="hoveredNavItem.set('')"
+                    (menuOpened)="openNavItem.set(item.label)" (menuClosed)="openNavItem.set('')"
+                    [style.box-shadow]="hoveredNavItem() === item.label || openNavItem() === item.label ? 'inset 0 -2px 0 var(--cyan)' : null">
+              {{ item.label }}
+              <i class="bi bi-chevron-down"></i>
+            </button>
+            <mat-menu #menu="matMenu" class="mega-menu" xPosition="after">
+              <div class="mega-grid" [class.mega-grid--rich]="item.children[0].icon">
+                @for (c of item.children; track c.label) {
+                  <a mat-menu-item class="mega-item" [href]="c.href">
+                    @if (c.icon) { <span class="mega-item__icon"><i class="bi" [class]="c.icon"></i></span> }
+                    <span><strong>{{ c.label }}</strong>@if (c.desc) { <small>{{ c.desc }}</small> }</span>
+                  </a>
+                }
+              </div>
+            </mat-menu>
+          } @else {
+            <a mat-button class="nav-link" [class.active]="item.label === 'Home'" [href]="item.href"
+               (mouseenter)="hoveredNavItem.set(item.label)" (mouseleave)="hoveredNavItem.set('')"
+               (focus)="hoveredNavItem.set(item.label)" (blur)="hoveredNavItem.set('')"
+               [style.box-shadow]="item.label === 'Home' || hoveredNavItem() === item.label ? 'inset 0 -2px 0 var(--cyan)' : null">
+              {{ item.label }}
+            </a>
+          }
         }
-        <a mat-flat-button class="quote-link" href="#contact">Get a quote</a>
       </nav>
 
-      <button
-        mat-icon-button
-        class="menu-toggle"
-        type="button"
-        aria-label="Toggle navigation"
-        [attr.aria-expanded]="menuOpen()"
-        (click)="menuOpen.set(!menuOpen())"
-      >
-        <span class="menu-icon" [class.open]="menuOpen()" aria-hidden="true">
-          <span></span><span></span><span></span>
-        </span>
+      @if (searchOpen()) {
+        <form class="search-form d-none d-xl-flex ms-auto" role="search" (submit)="$event.preventDefault(); submitSearch()">
+          <input #searchInput type="search" class="search-input" aria-label="Search site" placeholder="Search..." [value]="searchQuery()" (input)="onSearchInput($event)" (keydown.escape)="closeSearch()">
+          <button mat-icon-button class="search-action" type="submit" aria-label="Submit search"><i class="bi bi-search"></i></button>
+          <button mat-icon-button class="search-action search-close" type="button" aria-label="Close search" (click)="closeSearch()"><i class="bi bi-x-lg"></i></button>
+        </form>
+      } @else {
+        <button mat-icon-button class="search d-none d-xl-inline-flex ms-auto" type="button" aria-label="Open search" (click)="openSearch()"><i class="bi bi-search"></i></button>
+      }
+      @if (searchMessage()) {
+        <span class="search-message d-none d-xl-block" role="status">{{ searchMessage() }}</span>
+      }
+      <a mat-flat-button class="quote-link d-none d-xl-inline-flex" href="#contact">Get a quote<i class="bi bi-arrow-right"></i></a>
+
+      <button mat-icon-button class="menu-toggle d-xl-none ms-auto" type="button" aria-label="Toggle navigation"
+              [attr.aria-expanded]="menuOpen()" (click)="menuOpen.set(!menuOpen())">
+        <span class="menu-icon" [class.open]="menuOpen()" aria-hidden="true"><span></span><span></span><span></span></span>
       </button>
     </div>
   </mat-toolbar>
 
   @if (menuOpen()) {
-    <nav class="mobile-nav" aria-label="Main navigation">
-      @for (link of links; track link[0]) {
-        <a mat-button [href]="link[1]" (click)="menuOpen.set(false)">{{ link[0] }}</a>
-      }
-      <a mat-flat-button class="quote-link" href="#contact" (click)="menuOpen.set(false)">
-        Get a quote
-      </a>
+    <nav class="mobile-nav d-xl-none" aria-label="Mobile navigation">
+      <mat-accordion displayMode="flat">
+        @for (item of nav; track item.label) {
+          @if (item.children) {
+            <mat-expansion-panel class="m-panel">
+              <mat-expansion-panel-header>{{ item.label }}</mat-expansion-panel-header>
+              @for (c of item.children; track c.label) {
+                <a class="m-sub" [href]="c.href" (click)="menuOpen.set(false)">{{ c.label }}</a>
+              }
+            </mat-expansion-panel>
+          } @else {
+            <a class="m-link" [href]="item.href" (click)="menuOpen.set(false)">{{ item.label }}</a>
+          }
+        }
+      </mat-accordion>
+      <a mat-flat-button class="quote-link w-100 mt-3" href="#contact" (click)="menuOpen.set(false)">Get a quote<i class="bi bi-arrow-right"></i></a>
+      <div class="d-flex justify-content-between align-items-center mt-3 m-social">
+        <span class="d-flex gap-3"><i class="bi bi-linkedin"></i><i class="bi bi-github"></i><i class="bi bi-youtube"></i></span>
+      </div>
     </nav>
   }
+
 </header>

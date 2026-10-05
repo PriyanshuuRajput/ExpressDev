@@ -1,52 +1,56 @@
 @import '@angular/material/prebuilt-themes/azure-blue.css';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
 
 :root {
-    --ink: #373A36;
-    --ink2: #E6E2DD;
-    --line: rgb(55 58 54 / 16%);
-    --cyan: #D48166;
-    --amber: #E6E2DD;
-    --mint: #D48166;
-    --coral: #D48166;
-    --paper: #F0F0F0;
-    --text: #373A36;
-    --mute: rgb(55 58 54 / 76%);
-    --lmute: rgb(55 58 54 / 72%);
+    --ink: #292E2B;
+    --ink2: #E9E3DB;
+    --line: rgb(41 46 43 / 13%);
+    --cyan: #C87558;
+    --amber: #E7D9C9;
+    --mint: #DCE5DC;
+    --coral: #B95F45;
+    --brand-highlight: #D98C70;
+    --action-radius: 4px;
+    --action-height: 48px;
+    --paper: #F7F5F1;
+    --text: #343936;
+    --mute: rgb(52 57 54 / 72%);
+    --lmute: rgb(52 57 54 / 68%);
 
-    --mat-sys-primary: #D48166;
+    --mat-sys-primary: #C87558;
     --mat-sys-on-primary: #373A36;
-    --mat-sys-primary-container: rgb(212 129 102 / 18%);
+    --mat-sys-primary-container: rgb(200 117 88 / 16%);
     --mat-sys-on-primary-container: #373A36;
-    --mat-sys-inverse-primary: #D48166;
-    --mat-sys-secondary: #E6E2DD;
-    --mat-sys-on-secondary: #373A36;
-    --mat-sys-secondary-container: #E6E2DD;
-    --mat-sys-on-secondary-container: #373A36;
-    --mat-sys-tertiary: #D48166;
-    --mat-sys-on-tertiary: #373A36;
-    --mat-sys-error: #D48166;
-    --mat-sys-on-error: #373A36;
-    --mat-sys-background: #F0F0F0;
-    --mat-sys-on-background: #373A36;
-    --mat-sys-surface: #F0F0F0;
-    --mat-sys-surface-bright: #F0F0F0;
-    --mat-sys-surface-container: #F0F0F0;
-    --mat-sys-surface-container-high: #E6E2DD;
-    --mat-sys-surface-container-highest: #E6E2DD;
-    --mat-sys-surface-container-low: #F0F0F0;
-    --mat-sys-surface-container-lowest: #F0F0F0;
-    --mat-sys-surface-variant: #E6E2DD;
-    --mat-sys-on-surface: #373A36;
-    --mat-sys-on-surface-variant: #373A36;
-    --mat-sys-outline: rgb(55 58 54 / 38%);
-    --mat-sys-outline-variant: rgb(55 58 54 / 18%);
-    --mat-sys-surface-tint: #D48166;
+    --mat-sys-inverse-primary: #C87558;
+    --mat-sys-secondary: #E9E3DB;
+    --mat-sys-on-secondary: #292E2B;
+    --mat-sys-secondary-container: #E9E3DB;
+    --mat-sys-on-secondary-container: #292E2B;
+    --mat-sys-tertiary: #C87558;
+    --mat-sys-on-tertiary: #292E2B;
+    --mat-sys-error: #B95F45;
+    --mat-sys-on-error: #FFFFFF;
+    --mat-sys-background: #F7F5F1;
+    --mat-sys-on-background: #292E2B;
+    --mat-sys-surface: #F7F5F1;
+    --mat-sys-surface-bright: #FFFFFF;
+    --mat-sys-surface-container: #F2EFEA;
+    --mat-sys-surface-container-high: #E9E3DB;
+    --mat-sys-surface-container-highest: #E9E3DB;
+    --mat-sys-surface-container-low: #F7F5F1;
+    --mat-sys-surface-container-lowest: #FFFFFF;
+    --mat-sys-surface-variant: #E9E3DB;
+    --mat-sys-on-surface: #292E2B;
+    --mat-sys-on-surface-variant: #515753;
+    --mat-sys-outline: rgb(41 46 43 / 38%);
+    --mat-sys-outline-variant: rgb(41 46 43 / 16%);
+    --mat-sys-surface-tint: #C87558;
 
     --bs-body-color: var(--text);
     --bs-body-bg: var(--paper);
     --bs-primary: var(--cyan);
     --bs-secondary: var(--amber);
-    --bs-border-color: rgb(55 58 54 / 16%);
+    --bs-border-color: var(--line);
     --bs-link-color: var(--cyan);
     --bs-link-hover-color: var(--ink);
 }
@@ -68,7 +72,10 @@ html {
 body {
     color: var(--text);
     background: var(--paper);
-    line-height: 1.6
+    line-height: 1.65;
+    font-optical-sizing: auto;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
 }
 
 h1,
@@ -168,7 +175,9 @@ h2 {
 }
 
 .card:hover {
-    border-color: var(--cyan)
+    border-color: var(--cyan);
+    transform: translateY(-4px);
+    box-shadow: 0 18px 42px rgb(41 46 43 / 10%);
 }
 
 .card p {
@@ -250,4 +259,455 @@ body * {
 pre,
 pre * {
     font-family: ui-monospace, Menlo, Consolas, monospace !important
+}
+
+main section {
+    position: relative;
+    isolation: isolate;
+}
+
+.services-section,
+.technology-section,
+.faq-section {
+    background-color: #F1EEE8 !important;
+}
+
+.industries-section,
+.work-section,
+.process-section,
+.pricing-section,
+.testimonials-section,
+.contact-section {
+    background-color: var(--paper) !important;
+}
+
+.section-heading {
+    max-width: 760px;
+    margin-bottom: clamp(1.75rem, 3vw, 2.5rem) !important;
+}
+
+.section-heading .eyebrow,
+.hero-section .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    color: var(--coral) !important;
+    font-size: .72rem !important;
+    font-weight: 800 !important;
+    letter-spacing: .16em !important;
+}
+
+.section-heading .eyebrow::before {
+    width: 22px;
+    height: 2px;
+    content: '';
+    background: var(--cyan);
+}
+
+.section-heading h2,
+.section-heading .section-title,
+.industries-section .section-title {
+    margin-top: .65rem !important;
+    color: var(--ink) !important;
+    font-size: clamp(2rem, 4.3vw, 3.2rem) !important;
+    font-weight: 800 !important;
+    letter-spacing: -.055em !important;
+    line-height: 1.06 !important;
+}
+
+.section-heading p,
+.section-copy,
+.section-description {
+    color: var(--mute) !important;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.hero-section {
+    min-height: min(760px, calc(100svh - 100px));
+    display: grid;
+    align-items: center;
+    padding: 0 !important;
+    background:
+        radial-gradient(ellipse at 82% 16%, rgb(200 117 88 / 15%), transparent 35%),
+        radial-gradient(ellipse at 8% 92%, rgb(220 229 220 / 85%), transparent 34%),
+        linear-gradient(135deg, #FBFAF7 0%, #F2EFEA 100%) !important;
+}
+
+.hero-section .hero-container {
+    width: 100%;
+    padding-top: clamp(4rem, 8vw, 7rem);
+    padding-bottom: clamp(4rem, 8vw, 7rem);
+}
+
+.hero-section h1 {
+    max-width: 760px;
+    color: var(--ink);
+    font-size: clamp(3.1rem, 6.2vw, 5.8rem);
+    font-weight: 800;
+    letter-spacing: -.075em;
+    line-height: .99;
+    text-wrap: balance;
+}
+
+.hero-section .hero-description {
+    max-width: 600px;
+    margin-top: 1.6rem;
+    color: var(--mute);
+    font-size: clamp(1rem, 1.4vw, 1.18rem);
+    line-height: 1.8;
+}
+
+.hero-section .deploy-card {
+    border: 1px solid rgb(41 46 43 / 12%);
+    border-radius: 1.25rem;
+    background: rgb(255 255 255 / 84%);
+    box-shadow: 0 28px 90px rgb(41 46 43 / 14%), 0 4px 12px rgb(41 46 43 / 5%);
+    backdrop-filter: blur(14px);
+    animation: deploy-float 7s ease-in-out infinite;
+}
+
+.hero-section .card-heading,
+.hero-section .card-footer {
+    font-size: .78rem;
+}
+
+.hero-section .terminal {
+    padding: clamp(1.25rem, 3vw, 2rem);
+    font-size: .8rem;
+}
+
+.hero-section .hero-actions a,
+.quote-link.mat-mdc-unelevated-button,
+.services-cta a,
+.plan-action,
+.submit-button,
+.footer-cta {
+    min-height: 48px;
+    border-radius: 4px !important;
+    font-weight: 700;
+    transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease, color .2s ease;
+}
+
+.hero-section .hero-actions .primary-action,
+.quote-link.mat-mdc-unelevated-button,
+.services-cta a,
+.submit-button {
+    box-shadow: 0 10px 24px rgb(200 117 88 / 24%);
+}
+
+.hero-section .hero-actions a:hover,
+.quote-link.mat-mdc-unelevated-button:hover,
+.services-cta a:hover,
+.plan-action:hover,
+.submit-button:hover,
+.footer-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 30px rgb(41 46 43 / 16%);
+}
+
+.stats-section {
+    position: relative;
+    z-index: 1;
+    padding: 1.5rem 0 !important;
+    color: #F7F5F1;
+    background: linear-gradient(105deg, #252A27, #353A36) !important;
+}
+
+.stats-section .container {
+    max-width: 1180px;
+}
+
+.stats-section .stat-value {
+    color: #F7F5F1 !important;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    letter-spacing: -.06em;
+}
+
+.stats-section .stat-label {
+    color: rgb(247 245 241 / 70%);
+    font-size: .85rem;
+    letter-spacing: .03em;
+}
+
+.stats-section .col-6 {
+    position: relative;
+}
+
+.stats-section .col-6:not(:last-child)::after {
+    position: absolute;
+    top: 12%;
+    right: 0;
+    width: 1px;
+    height: 76%;
+    content: '';
+    background: rgb(247 245 241 / 18%);
+}
+
+.service-card,
+.project-card,
+.step-card,
+.plan-card,
+.quote-card,
+.faq-section mat-expansion-panel,
+.contact-form,
+.success-message {
+    border: 1px solid rgb(41 46 43 / 10%) !important;
+    border-radius: 14px !important;
+    background: #FFFEFC !important;
+    box-shadow: 0 8px 26px rgb(41 46 43 / 5%);
+    transition: transform .28s cubic-bezier(.2, .75, .25, 1), border-color .25s ease, box-shadow .25s ease;
+}
+
+.service-card:hover,
+.project-card:hover,
+.step-card:hover,
+.plan-card:hover,
+.quote-card:hover {
+    transform: translateY(-7px);
+    border-color: rgb(200 117 88 / 52%) !important;
+    box-shadow: 0 22px 50px rgb(41 46 43 / 11%);
+}
+
+.service-icon,
+.ic {
+    border-radius: 10px !important;
+    color: var(--coral);
+    background: rgb(200 117 88 / 12%) !important;
+}
+
+.service-link,
+.footer-link,
+.client-portal {
+    transition: color .2s ease, transform .2s ease;
+}
+
+.service-link:hover,
+.footer-link:hover,
+.client-portal:hover {
+    color: var(--coral) !important;
+}
+
+.services-cta {
+    border-color: rgb(41 46 43 / 12%) !important;
+    border-radius: 12px !important;
+    background: linear-gradient(110deg, #EBE7E0, #F9F7F3) !important;
+}
+
+.service-filters button,
+.industry-list mat-chip,
+.technology-section mat-chip-set mat-chip,
+.work-section mat-chip-set mat-chip {
+    transition: color .18s ease, background-color .18s ease, border-color .18s ease, transform .18s ease;
+}
+
+.service-filters button:hover,
+.industry-list mat-chip:hover,
+.technology-section mat-chip-set mat-chip:hover,
+.work-section mat-chip-set mat-chip:hover {
+    transform: translateY(-2px);
+}
+
+.plan-card.featured {
+    border-color: var(--cyan) !important;
+    box-shadow: 0 20px 55px rgb(200 117 88 / 14%);
+}
+
+.popular-badge {
+    border-radius: 3px !important;
+    color: #fff !important;
+    background: var(--coral) !important;
+}
+
+.step-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    color: var(--coral) !important;
+    background: rgb(200 117 88 / 12%);
+}
+
+.faq-section mat-expansion-panel {
+    margin-bottom: .75rem;
+    overflow: hidden;
+}
+
+.faq-section mat-expansion-panel:hover {
+    border-color: rgb(200 117 88 / 48%) !important;
+    box-shadow: 0 12px 30px rgb(41 46 43 / 7%);
+}
+
+.contact-form {
+    padding: clamp(1.25rem, 3vw, 2rem) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 18px 55px rgb(41 46 43 / 9%);
+}
+
+.contact-form .form-control,
+.contact-form .form-select {
+    min-height: 48px;
+    border-radius: 5px;
+    transition: border-color .2s ease, box-shadow .2s ease;
+}
+
+.contact-form textarea.form-control {
+    min-height: 120px;
+}
+
+.footer-section {
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse at 86% 0, rgb(200 117 88 / 15%), transparent 38%),
+        #252A27 !important;
+}
+
+.footer-section .footer-link:hover {
+    transform: translateX(3px);
+}
+
+body app-root .hero-section .hero-actions .primary-action,
+body app-root .topbar .quote-link.mat-mdc-unelevated-button,
+body app-root .services-cta a.mat-mdc-unelevated-button,
+body app-root .plan-action.featured-action.mat-mdc-unelevated-button,
+body app-root .submit-button.mat-mdc-unelevated-button,
+body app-root .footer-cta.mat-mdc-button {
+    min-height: var(--action-height) !important;
+    height: var(--action-height) !important;
+    padding-inline: 1.25rem;
+    border: 1px solid var(--cyan) !important;
+    border-radius: var(--action-radius) !important;
+    color: var(--ink) !important;
+    background: var(--cyan) !important;
+    font-weight: 700 !important;
+    box-shadow: 0 8px 20px rgb(200 117 88 / 18%);
+    transition: color .2s ease, background-color .2s ease, border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+
+body app-root .hero-section .hero-actions .primary-action:hover,
+body app-root .topbar .quote-link.mat-mdc-unelevated-button:hover,
+body app-root .services-cta a.mat-mdc-unelevated-button:hover,
+body app-root .plan-action.featured-action.mat-mdc-unelevated-button:hover,
+body app-root .submit-button.mat-mdc-unelevated-button:hover,
+body app-root .footer-cta.mat-mdc-button:hover {
+    border-color: var(--coral) !important;
+    color: #FFFFFF !important;
+    background: var(--coral) !important;
+    box-shadow: 0 12px 26px rgb(41 46 43 / 16%);
+    transform: translateY(-2px);
+}
+
+body app-root .hero-section .hero-actions .secondary-action,
+body app-root .service-filters .mat-mdc-outlined-button,
+body app-root .plan-action:not(.featured-action).mat-mdc-unelevated-button {
+    min-height: 48px !important;
+    height: 48px !important;
+    padding-inline: 1.25rem;
+    border: 1px solid rgb(41 46 43 / 30%) !important;
+    border-radius: var(--action-radius) !important;
+    color: var(--ink) !important;
+    background: transparent !important;
+    font-weight: 700 !important;
+    box-shadow: none;
+    transition: color .2s ease, background-color .2s ease, border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+
+body app-root .service-filters .mat-mdc-outlined-button {
+    min-height: 40px !important;
+    height: 40px !important;
+    padding-inline: 1rem;
+    font-size: .86rem;
+}
+
+body app-root .hero-section .hero-actions .secondary-action:hover,
+body app-root .service-filters .mat-mdc-outlined-button:hover,
+body app-root .plan-action:not(.featured-action).mat-mdc-unelevated-button:hover {
+    border-color: var(--cyan) !important;
+    color: var(--coral) !important;
+    background: rgb(200 117 88 / 8%) !important;
+    transform: translateY(-2px);
+}
+
+body app-root .service-filters .mat-mdc-outlined-button.selected {
+    border-color: var(--cyan) !important;
+    color: var(--ink) !important;
+    background: var(--cyan) !important;
+}
+
+.topbar .quote-link.mat-mdc-unelevated-button i {
+    transition: transform .2s ease;
+}
+
+.topbar .quote-link.mat-mdc-unelevated-button:hover i {
+    transform: translateX(3px);
+}
+
+main.has-scroll-reveal section.scroll-reveal.scroll-pending {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .7s ease, transform .7s cubic-bezier(.2, .7, .2, 1);
+}
+
+main.has-scroll-reveal section.scroll-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes deploy-float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-9px); }
+}
+
+@media (max-width: 767.98px) {
+    .hero-section {
+        min-height: auto;
+    }
+
+    .hero-section h1 {
+        font-size: clamp(2.7rem, 12vw, 4.25rem);
+    }
+
+    .stats-section .stat-label {
+        max-width: 11rem;
+        margin: .3rem auto 0;
+    }
+
+    .stats-section .col-6:nth-child(2)::after {
+        content: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-section .deploy-card {
+        animation: none;
+    }
+
+    main.has-scroll-reveal section.scroll-reveal.scroll-pending {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    .service-card,
+    .project-card,
+    .step-card,
+    .plan-card,
+    .quote-card,
+    .faq-section mat-expansion-panel,
+    .hero-section .hero-actions a,
+    .quote-link.mat-mdc-unelevated-button,
+    .services-cta a,
+    .plan-action,
+    .submit-button,
+    .footer-cta {
+        transition: none;
+    }
 }
