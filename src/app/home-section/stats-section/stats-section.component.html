@@ -1,10 +1,22 @@
-<section class="stats-section py-4">
+
+<section class="stats-section">
   <div class="container">
-    <div class="row g-4 text-center text-md-start">
-      @for (stat of stats; track stat[1]) {
+    <div class="row g-0">
+      @for (stat of stats; track stat[1]; let i = $index) {
         <div class="col-6 col-lg-3">
-          <div class="stat-value">{{ stat[0] }}</div>
-          <div class="stat-label">{{ stat[1] }}</div>
+          <div class="stat-item"
+               [class.stat-item--last]="i === stats.length - 1">
+
+            <span class="stat-index">
+              0{{ i + 1 }}
+            </span>
+
+            <div class="stat-value">{{ stat[0] }}</div>
+
+            <div class="stat-label">{{ stat[1] }}</div>
+
+            <span class="stat-accent"></span>
+          </div>
         </div>
       }
     </div>

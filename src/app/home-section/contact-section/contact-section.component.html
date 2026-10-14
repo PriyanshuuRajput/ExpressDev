@@ -1,77 +1,348 @@
-<section id="contact" class="contact-section py-5">
-  <div class="container">
-    <div class="row g-4 align-items-start">
-      <div class="col-lg-5 contact-copy">
-        <span class="eyebrow">LET’S BUILD SOMETHING</span>
-        <h2 class="section-title mt-2">Tell us about your project</h2>
-        <p class="section-description">
-          We reply within one business day with next steps and a rough estimate.
-        </p>
-        <div class="contact-details">
-          <p><span aria-hidden="true">✉</span> hello&#64;expressdev.example</p>
-          <p><span aria-hidden="true">☎</span> +91 00000 00000</p>
-          <p><span aria-hidden="true">⌖</span> Delhi, India · working with clients worldwide</p>
+<section id="contact" class="contact-section">
+  <div class="contact-background-shape shape-one" aria-hidden="true"></div>
+  <div class="contact-background-shape shape-two" aria-hidden="true"></div>
+
+  <div class="container contact-container">
+    <div class="row g-4 g-xl-5 align-items-stretch">
+
+      <!-- LEFT: INTRODUCTION -->
+      <div class="col-lg-5">
+        <div class="contact-left">
+
+          <div class="contact-intro">
+            <span class="contact-eyebrow reveal-item">
+              <span class="eyebrow-line"></span>
+              LET'S BUILD SOMETHING GREAT
+            </span>
+
+            <h2 class="contact-title reveal-item">
+              Your next big idea
+              <span>starts here.</span>
+            </h2>
+
+            <p class="contact-description reveal-item">
+              We turn your business challenges into scalable digital
+              solutions. From strategy to execution, our team helps you
+              build, launch and grow with confidence.
+            </p>
+          </div>
+
+          <!-- Service highlights -->
+          <div class="service-highlights">
+
+            <div class="service-highlight reveal-item">
+              <span class="service-icon">
+                <i class="bi bi-lightbulb"></i>
+              </span>
+              <h3>Product strategy</h3>
+              <p>Turn ideas into clear roadmaps.</p>
+            </div>
+
+            <div class="service-highlight reveal-item">
+              <span class="service-icon">
+                <i class="bi bi-code-slash"></i>
+              </span>
+              <h3>Expert engineering</h3>
+              <p>Scalable, secure and future-ready.</p>
+            </div>
+
+            <div class="service-highlight reveal-item">
+              <span class="service-icon">
+                <i class="bi bi-bar-chart-line"></i>
+              </span>
+              <h3>Reliable delivery</h3>
+              <p>On time, on budget and beyond.</p>
+            </div>
+
+          </div>
+
+          <!-- Contact information -->
+          <div class="contact-info-panel reveal-item">
+
+            <div class="contact-info-item">
+              <span class="contact-info-icon">
+                <i class="bi bi-envelope-fill"></i>
+              </span>
+              <span class="contact-info-text">
+                <strong>support@expressdev.in</strong>
+                <small>Drop us an email</small>
+              </span>
+            </div>
+
+            <div class="contact-info-item">
+              <span class="contact-info-icon">
+                <i class="bi bi-telephone-fill"></i>
+              </span>
+              <span class="contact-info-text">
+                <strong>+91 7500151158</strong>
+                <small>Give us a call</small>
+              </span>
+            </div>
+
+            <div class="contact-info-item">
+              <span class="contact-info-icon">
+                <i class="bi bi-geo-alt-fill"></i>
+              </span>
+              <span class="contact-info-text">
+                <strong>Noida, India</strong>
+                <small>Working with clients worldwide</small>
+              </span>
+            </div>
+
+            <div class="contact-panel-decoration" aria-hidden="true"></div>
+          </div>
+
         </div>
       </div>
 
+      <!-- RIGHT: PROJECT FORM -->
       <div class="col-lg-7">
-        @if (sent()) {
-          <div class="success-message p-4 rounded-4" role="status">
-            <h3>Thanks, {{ model.name }}.</h3>
-            <p class="mb-0">We’ll write to {{ model.email }} within one business day.</p>
-          </div>
-        } @else {
-          <form #form="ngForm" class="row g-3 contact-form" (ngSubmit)="submit(form.valid)">
-            <div class="col-md-6">
-              <label class="form-label" for="contact-name">Your name</label>
-              <input
-                id="contact-name"
-                class="form-control"
-                name="name"
-                autocomplete="name"
-                [(ngModel)]="model.name"
-                required
-              >
+        <div class="contact-form-card reveal-item">
+
+          @if (sent) {
+            <div class="success-message" role="status">
+              <span class="success-icon">
+                <i class="bi bi-check2-circle"></i>
+              </span>
+              <h3>Thanks, {{ model.name }}!</h3>
+              <p>
+                Your request has been received. We'll contact you at
+                {{ model.email }} within one business day.
+              </p>
+              <button
+                type="button"
+                class="btn contact-reset-button"
+                (click)="resetForm()">
+                Send another request
+              </button>
             </div>
-            <div class="col-md-6">
-              <label class="form-label" for="contact-email">Work email</label>
-              <input
-                id="contact-email"
-                class="form-control"
-                name="email"
-                type="email"
-                autocomplete="email"
-                [(ngModel)]="model.email"
-                required
-                email
-              >
+          } @else {
+
+            <div class="form-heading">
+              <div>
+                <span class="form-eyebrow">
+                  <span class="eyebrow-line"></span>
+                  01 / PROJECT DETAILS
+                </span>
+
+                <h3>Tell us what you're building</h3>
+                <p>
+                  Share a few details and our team will get back to you
+                  within 24 hours.
+                </p>
+              </div>
+
+              <span class="form-heading-icon" aria-hidden="true">
+                <i class="bi bi-chat-square-text"></i>
+              </span>
             </div>
-            <div class="col-12">
-              <label class="form-label" for="contact-service">Service needed</label>
-              <select id="contact-service" class="form-select" name="service" [(ngModel)]="model.service">
-                <option value="">Choose a service</option>
-                @for (service of services; track service.t) {
-                  <option [value]="service.t">{{ service.t }}</option>
-                }
-              </select>
-            </div>
-            <div class="col-12">
-              <label class="form-label" for="contact-details">Project details</label>
-              <textarea
-                id="contact-details"
-                class="form-control"
-                name="details"
-                rows="4"
-                [(ngModel)]="model.details"
-                required
-              ></textarea>
-            </div>
-            <div class="col-12">
-              <button mat-flat-button class="submit-button" type="submit">Send request</button>
-            </div>
-          </form>
-        }
+
+            <form
+              #form="ngForm"
+              class="project-form"
+              (ngSubmit)="submit(form)">
+
+              <div class="row g-3">
+
+                <!-- Name -->
+                <div class="col-md-6">
+                  <label for="contact-name" class="form-label">
+                    Your name <span>*</span>
+                  </label>
+
+                  <div class="input-wrap">
+                    <i class="bi bi-person" aria-hidden="true"></i>
+                    <input
+                      id="contact-name"
+                      class="form-control"
+                      name="name"
+                      type="text"
+                      placeholder="Enter your full name"
+                      autocomplete="name"
+                      [(ngModel)]="model.name"
+                      required
+                      #nameInput="ngModel"
+                      [class.is-invalid]="nameInput.invalid && nameInput.touched"
+                    />
+                  </div>
+
+                  @if (nameInput.invalid && nameInput.touched) {
+                    <small class="field-error">Please enter your name.</small>
+                  }
+                </div>
+
+                <!-- Email -->
+                <div class="col-md-6">
+                  <label for="contact-email" class="form-label">
+                    Work email <span>*</span>
+                  </label>
+
+                  <div class="input-wrap">
+                    <i class="bi bi-envelope" aria-hidden="true"></i>
+                    <input
+                      id="contact-email"
+                      class="form-control"
+                      name="email"
+                      type="email"
+                      placeholder="you@company.com"
+                      autocomplete="email"
+                      [(ngModel)]="model.email"
+                      required
+                      email
+                      #emailInput="ngModel"
+                      [class.is-invalid]="emailInput.invalid && emailInput.touched"
+                    />
+                  </div>
+
+                  @if (emailInput.invalid && emailInput.touched) {
+                    <small class="field-error">
+                      Please enter a valid email address.
+                    </small>
+                  }
+                </div>
+
+                <!-- Service -->
+                <div class="col-12">
+                  <label for="contact-service" class="form-label">
+                    What can we help you with? <span>*</span>
+                  </label>
+
+                  <div class="input-wrap select-wrap">
+                    <i class="bi bi-grid" aria-hidden="true"></i>
+                    <select
+                      id="contact-service"
+                      class="form-select"
+                      name="service"
+                      [(ngModel)]="model.service"
+                      required
+                      #serviceInput="ngModel"
+                      [class.is-invalid]="serviceInput.invalid && serviceInput.touched">
+
+                      <option value="" disabled>Choose a service</option>
+
+                      @for (service of services; track service.value) {
+                        <option [value]="service.value">
+                          {{ service.label }}
+                        </option>
+                      }
+                    </select>
+                  </div>
+
+                  @if (serviceInput.invalid && serviceInput.touched) {
+                    <small class="field-error">Please choose a service.</small>
+                  }
+                </div>
+
+                <!-- Project details -->
+                <div class="col-12">
+                  <label for="contact-details" class="form-label">
+                    A little about your project <span>*</span>
+                  </label>
+
+                  <div class="input-wrap textarea-wrap">
+                    <i class="bi bi-file-earmark-text" aria-hidden="true"></i>
+                    <textarea
+                      id="contact-details"
+                      class="form-control"
+                      name="details"
+                      rows="4"
+                      maxlength="500"
+                      placeholder="Tell us about your goals, requirements, timeline, or challenges..."
+                      [(ngModel)]="model.details"
+                      required
+                      #detailsInput="ngModel"
+                      [class.is-invalid]="detailsInput.invalid && detailsInput.touched">
+                    </textarea>
+                  </div>
+
+                  @if (detailsInput.invalid && detailsInput.touched) {
+                    <small class="field-error">
+                      Please tell us a little about your project.
+                    </small>
+                  }
+
+                  <div class="textarea-meta">
+                    <small>Share a few details about your idea.</small>
+                    <small>{{ model.details.length }}/500</small>
+                  </div>
+                </div>
+
+                <!-- Budget -->
+                <div class="col-md-6">
+                  <label for="contact-budget" class="form-label">
+                    Estimated budget
+                  </label>
+
+                  <div class="input-wrap select-wrap">
+                    <i class="bi bi-wallet2" aria-hidden="true"></i>
+                    <select
+                      id="contact-budget"
+                      class="form-select"
+                      name="budget"
+                      [(ngModel)]="model.budget">
+                      <option value="">Select budget range</option>
+                      <option value="under-50000">Under ₹50,000</option>
+                      <option value="50000-150000">₹50,000 – ₹1,50,000</option>
+                      <option value="150000-500000">₹1,50,000 – ₹5,00,000</option>
+                      <option value="500000-plus">₹5,00,000+</option>
+                      <option value="not-sure">Not sure yet</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Timeline -->
+                <div class="col-md-6">
+                  <label for="contact-timeline" class="form-label">
+                    Ideal start date
+                  </label>
+
+                  <div class="input-wrap select-wrap">
+                    <i class="bi bi-calendar3" aria-hidden="true"></i>
+                    <select
+                      id="contact-timeline"
+                      class="form-select"
+                      name="timeline"
+                      [(ngModel)]="model.timeline">
+                      <option value="">Select a timeframe</option>
+                      <option value="asap">As soon as possible</option>
+                      <option value="2-4-weeks">Within 2–4 weeks</option>
+                      <option value="1-3-months">Within 1–3 months</option>
+                      <option value="flexible">Flexible</option>
+                    </select>
+                  </div>
+                </div>
+
+                <!-- Submit -->
+                <div class="col-12">
+                  <div class="form-submit-row">
+
+                    <div class="privacy-note">
+                      <i class="bi bi-shield-check" aria-hidden="true"></i>
+                      <span>
+                        <strong>Your details stay confidential.</strong>
+                        <small>We'll never share your information with third parties.</small>
+                      </span>
+                    </div>
+                    
+                    <button
+                      mat-flat-button
+                      type="submit"
+                      class="submit-button"
+                      [disabled]="form.invalid">
+
+                      Send project enquiry
+                      <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                    </button>
+
+                  </div>
+                </div>
+
+              </div>
+            </form>
+          }
+        </div>
       </div>
+
     </div>
   </div>
 </section>

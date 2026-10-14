@@ -13,7 +13,8 @@ import { TestimonialsSectionComponent } from './home-section/testimonials-sectio
 import { TopBarComponent } from './home-section/top-bar/top-bar.component';
 import { WorkSectionComponent } from './home-section/work-section/work-section.component';
 import { ScrollRevealDirective } from './shared/scroll-reveal.directive';
+import { ChatComponent } from './chatBot/chat/chat';
 @Component({selector:'app-root',standalone:true,
-imports:[TopBarComponent,HeroSectionComponent,StatsSectionComponent,ServicesSectionComponent,IndustriesSectionComponent,WorkSectionComponent,ProcessSectionComponent,TechnologySectionComponent,PricingSectionComponent,TestimonialsSectionComponent,FaqSectionComponent,ContactSectionComponent,FooterSectionComponent,ScrollRevealDirective],
-template:`<app-top-bar/><main appScrollReveal><app-hero-section/><app-stats-section/><app-services-section/><app-industries-section/><app-work-section/><app-process-section/><app-technology-section/><app-pricing-section/><app-testimonials-section/><app-faq-section/><app-contact-section/></main><app-footer-section/>`})
+imports:[TopBarComponent,HeroSectionComponent,StatsSectionComponent,ServicesSectionComponent,IndustriesSectionComponent,WorkSectionComponent,ProcessSectionComponent,TechnologySectionComponent,PricingSectionComponent,TestimonialsSectionComponent,FaqSectionComponent,ContactSectionComponent,FooterSectionComponent,ScrollRevealDirective, ChatComponent,],
+template:`<app-top-bar/><main appScrollReveal><app-hero-section/><app-stats-section/><app-services-section/><app-industries-section/><app-work-section/><app-process-section/><app-technology-section/><app-pricing-section/><app-testimonials-section/><app-faq-section/><app-contact-section/></main><app-footer-section/><app-chat />`})
 export class AppComponent{}

@@ -1,0 +1,109 @@
+<div class="cb" [class.is-open]="open()" [class.is-expanded]="expanded()">
+
+  <!-- Chat window -->
+  <section class="cb__panel" role="dialog" aria-label="ExpressDev Assistant chat" [attr.aria-hidden]="!open()">
+
+    <header class="cb__head">
+      <span class="cb__logo" aria-hidden="true">
+        <svg viewBox="0 0 48 48" width="26" height="26" fill="none">
+          <path d="M9 9 24 24 9 39" stroke="#0B1220" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M25 9 40 24 25 39" stroke="#0E7490" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <div class="cb__who">
+        <strong>ExpressDev Assistant</strong>
+        <span><i class="cb__dot"></i>Online</span>
+      </div>
+      <div class="cb__tools">
+        <button mat-icon-button class="cb__tool d-none d-sm-inline-flex" type="button" (click)="expanded.set(!expanded())" [attr.aria-label]="expanded() ? 'Shrink chat' : 'Expand chat'">
+          <i class="bi" [class]="expanded() ? 'bi-arrows-angle-contract' : 'bi-arrows-angle-expand'"></i>
+        </button>
+        <button mat-icon-button class="cb__tool" type="button" (click)="close()" aria-label="Close chat"><i class="bi bi-x-lg"></i></button>
+      </div>
+    </header>
+
+    <div class="cb__body" #scroller aria-live="polite">
+      @for (m of messages(); track m.id) {
+        @if (m.from === 'bot') {
+          <div class="cb__row cb__row--bot">
+            <span class="cb__avatar" aria-hidden="true">
+              <svg viewBox="0 0 48 48" width="15" height="15" fill="none"><path d="M9 9 24 24 9 39" stroke="#0B1220" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M25 9 40 24 25 39" stroke="#0E7490" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <div class="cb__stack">
+              <div class="cb__bubble cb__bubble--bot">{{ m.text }}</div>
+              <span class="cb__time">{{ m.time }}</span>
+              @if (m.actions?.length) {
+                <div class="cb__actions">
+                  @for (a of (m.actions); track a.label) {
+                    @if (a.href) {
+                      <a class="cb__act" [class.is-outline]="a.outline" [href]="a.href" (click)="close()"><i class="bi" [class]="a.icon"></i>{{ a.label }}</a>
+                    } @else {
+                      <button type="button" class="cb__act" [class.is-outline]="a.outline" (click)="send(a.prompt)"><i class="bi" [class]="a.icon"></i>{{ a.label }}</button>
+                    }
+                  }
+                </div>
+              }
+            </div>
+          </div>
+        } @else {
+          <div class="cb__row cb__row--me">
+            <div class="cb__stack cb__stack--me">
+              @if (m.file; as f) {
+                <div class="cb__file">
+                  <span class="cb__file-icon"><i class="bi" [class]="f.icon"></i></span>
+                  <span class="cb__file-meta"><strong>{{ f.name }}</strong><small>{{ f.size }}</small></span>
+                </div>
+              }
+              @if (m.text) { <div class="cb__bubble cb__bubble--me">{{ m.text }}</div> }
+              <span class="cb__time">{{ m.time }} <i class="bi bi-check2-all"></i></span>
+            </div>
+          </div>
+        }
+      }
+
+      @if (showChips()) {
+        <div class="cb__chips" role="group" aria-label="Suggested topics">
+          @for (c of chips; track c.label) {
+            <button type="button" class="cb__chip" (click)="send(c.label)"><i class="bi" [class]="c.icon"></i>{{ c.label }}</button>
+          }
+        </div>
+      }
+
+      @if (typing()) {
+        <div class="cb__row cb__row--bot" aria-label="Assistant is typing">
+          <span class="cb__avatar" aria-hidden="true">
+            <svg viewBox="0 0 48 48" width="15" height="15" fill="none"><path d="M9 9 24 24 9 39" stroke="#0B1220" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M25 9 40 24 25 39" stroke="#0E7490" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="cb__typing"><i></i><i></i><i></i></span>
+        </div>
+      }
+    </div>
+
+    @if (pendingFile(); as pf) {
+      <div class="cb__pending">
+        <i class="bi bi-paperclip"></i><span>{{ pf.name }}</span>
+        <button type="button" (click)="clearFile()" aria-label="Remove attachment"><i class="bi bi-x-lg"></i></button>
+      </div>
+    }
+
+    <div class="cb__input">
+      <input #picker type="file" hidden accept=".pdf,.doc,.docx,.txt,.png,.jpg,.jpeg" (change)="pickFile($event)">
+      <input #field class="cb__field" type="text" placeholder="Type a message..." aria-label="Type a message" autocomplete="off"
+             [value]="draft()" (input)="draft.set(field.value)" (keydown.enter)="send()">
+      <button mat-icon-button class="cb__attach" type="button" (click)="picker.click()" aria-label="Attach a file"><i class="bi bi-paperclip"></i></button>
+      <button mat-icon-button class="cb__send" type="button" (click)="send()" [disabled]="!canSend()" aria-label="Send message"><i class="bi bi-send-fill"></i></button>
+    </div>
+  </section>
+
+  <!-- Launcher -->
+  @if (tooltip() && !open()) {
+    <div class="cb__tip" role="status">
+      Hi! Need help?<br>Chat with us.
+      <button type="button" (click)="tooltip.set(false)" aria-label="Dismiss"><i class="bi bi-x"></i></button>
+    </div>
+  }
+  <button type="button" class="cb__fab" (click)="toggle()" [attr.aria-expanded]="open()" aria-label="Open chat with ExpressDev Assistant">
+    <i class="bi" [class]="open() ? 'bi-chevron-down' : 'bi-chat-dots-fill'"></i>
+    @if (unread() > 0 && !open()) { <span class="cb__badge">{{ unread() }}</span> }
+  </button>
+</div>

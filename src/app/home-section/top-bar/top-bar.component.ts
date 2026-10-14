@@ -31,31 +31,31 @@ export class TopBarComponent {
 
   nav: NavItem[] = [
       { label: 'Home', href: '#top' },
-      { label: 'Services', href: '#services', children: [
-      { label: 'Custom software', href: '#services', icon: 'bi-code-slash', desc: 'Apps and APIs built for your workflow' },
-      { label: 'Web development', href: '#services', icon: 'bi-globe2', desc: 'Fast sites, portals and e-commerce' },
-      { label: 'Mobile apps', href: '#services', icon: 'bi-phone', desc: 'iOS and Android, native or hybrid' },
-      { label: 'Cloud and DevOps', href: '#services', icon: 'bi-cloud', desc: 'AWS, Azure, CI/CD and monitoring' },
-      { label: 'Cybersecurity', href: '#services', icon: 'bi-shield-lock', desc: 'Audits, testing and compliance' },
-      { label: 'AI and data', href: '#services', icon: 'bi-cpu', desc: 'Automation, analytics and ML' }] },
-      { label: 'Solutions', href: '#solutions', children: [
-      { label: 'Digital transformation', href: '#solutions' },
-      { label: 'Product engineering', href: '#solutions' },
-      { label: 'IT outsourcing', href: '#solutions' },
-      { label: 'Dedicated teams', href: '#solutions' }] },
+      { label: 'Platform', href: '#services', children: [
+      { label: 'Member engagement', href: '#services', icon: 'bi-people-fill', desc: 'Profile, community and connection flows' },
+      { label: 'Learning experience', href: '#services', icon: 'bi-mortarboard-fill', desc: 'Courses, pathways and progress tracking' },
+      { label: 'Commerce engine', href: '#services', icon: 'bi-bag-check-fill', desc: 'Subscriptions, storefronts and memberships' },
+      { label: 'Cloud operations', href: '#services', icon: 'bi-cloud-fill', desc: 'Reliable hosting, scaling and monitoring' },
+      { label: 'Security and trust', href: '#services', icon: 'bi-shield-lock-fill', desc: 'Access control and governance' },
+      { label: 'Growth insights', href: '#services', icon: 'bi-graph-up-arrow', desc: 'Analytics for engagement and retention' }] },
+      { label: 'Communities', href: '#solutions', children: [
+      { label: 'Corporate communities', href: '#solutions' },
+      { label: 'Member networks', href: '#solutions' },
+      { label: 'Learning groups', href: '#solutions' },
+      { label: 'Professional associations', href: '#solutions' }] },
       { label: 'Industries', href: '#industries', children: [
       { label: 'Healthcare', href: '#industries' },
-      { label: 'Fintech', href: '#industries' },
-      { label: 'Retail', href: '#industries' },
-      { label: 'Logistics', href: '#industries' },
-      { label: 'Education', href: '#industries' }] },
-      { label: 'Our work', href: '#work' },
-      { label: 'About', href: '#about' },
-      { label: 'Pricing', href: '#pricing' },
-      { label: 'Resources', href: '#resources', children: [
-      { label: 'Blog', href: '#resources' },
+      { label: 'Education', href: '#industries' },
+      { label: 'B2B networks', href: '#industries' },
+      { label: 'Professional bodies', href: '#industries' },
+      { label: 'Associations', href: '#industries' }] },
+      { label: 'Results', href: '#work' },
+      { label: 'Why us', href: '#about' },
+      { label: 'Plans', href: '#pricing' },
+      { label: 'Insights', href: '#resources', children: [
+      { label: 'Community guide', href: '#resources' },
       { label: 'Case studies', href: '#work' },
-      { label: 'Careers', href: '#about' }] }
+      { label: 'Learning roadmap', href: '#about' }] }
   ];
 
   openSearch() {

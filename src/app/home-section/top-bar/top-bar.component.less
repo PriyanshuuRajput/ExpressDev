@@ -1,30 +1,48 @@
-@navy: var(--ink);
-@ink: var(--ink);
-@blue: var(--cyan);
-@light: var(--mint);
-@pale: rgb(212 129 102 / 10%);
-@orange: var(--cyan);
-@orange-dark: var(--coral);
-@line: var(--line);
-@bg: var(--paper);
+// ExpressDev topbar: white premium theme (ink + teal) with animated chevron logo.
+// Same structure and class names as before; only colours, fonts and the logo changed.
+
+@font: 'Onest', 'Montserrat', sans-serif;
+
+@ink: #0B1220;
+@navy: @ink;
+@muted: #3C4658;
+@subtle: #6B7688;
+@line: #E6EAF0;
+@bg: #FFFFFF;
+
+@accent: #0E7490;          // teal (replaces the old purple/yellow accents)
+@accent-dark: #0B5E74;
+@accent-bright: #22D3EE;   // for use on dark backgrounds
+@pale: rgb(14 116 144 / 10%);
+@live: #22C55E;
+
+// strip highlight colours
+@hl-cyan: #22D3EE;
+@hl-green: #4ADE80;
+@hl-amber: #FBBF24;
+@hl-rose: #FB7185;
+
 @h: 76px;
 @h-small: 60px;
 @bp: 1200px;
 
 .pill(@bg, @fg) {
   padding: 0 22px;
-  border-radius: 999px;
+  border-radius: 12px;
   background: @bg;
   color: @fg;
 }
 
 .topbar {
+  --cyan: @accent; // used by the nav underline in the template ([style.box-shadow])
+
   position: sticky;
   top: 0;
   z-index: 1000;
 
   .container {
     max-width: 1440px;
+    padding: 0px;
   }
 
   i.bi {
@@ -32,13 +50,14 @@
   }
 
   &__strip {
+    position: relative;
     height: 45px;
     max-height: 45px;
     overflow: hidden;
-    background: linear-gradient(105deg, #202321 0%, #282522 62%, #3b2924 100%);
-    color: #F0F0F0;
+    background: linear-gradient(100deg, #0B1220 0%, #0F2433 55%, #0B3B4A 100%);
+    color: #E6ECF5;
+    font-family: @font;
     font-size: 12px;
-    border-bottom: 1px solid rgb(255 255 255 / 12%);
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
@@ -62,41 +81,54 @@
       > span {
         display: inline-flex;
         align-items: center;
-        gap: 9px;
-        min-height: 24px;
+        gap: 10px;
+        min-height: 30px;
         padding: 0 16px;
-        border-right: 1px solid rgb(255 255 255 / 16%);
-        color: #F0F0F0;
+        border-right: 1px solid rgb(255 255 255 / 12%);
+        color: #E6ECF5;
         text-decoration: none;
         white-space: nowrap;
+        transition: color .15s;
 
         &:first-child {
-          padding-left: 0;
+          padding-left: 2px;
         }
 
         &:last-child {
           border-right: 0;
         }
 
+        // each contact gets its own highlight colour (icon chip)
         > i {
-          color: @orange;
-          font-size: 1rem;
+          display: inline-grid;
+          place-items: center;
+          width: 24px;
+          height: 24px;
+          border-radius: 8px;
+          font-size: .8rem;
+          transition: transform .2s, background .2s, color .2s;
         }
       }
 
-      > a:hover {
-        color: @orange;
+      > a:nth-child(1) > i { background: rgb(34 211 238 / 18%); color: @hl-cyan; }
+      > a:nth-child(2) > i { background: rgb(245 179 1 / 18%);  color: @hl-amber; }
+      .topbar__location > i { background: rgb(251 113 133 / 18%); color: @hl-rose; }
+
+      > a:nth-child(1):hover { color: @hl-cyan; }
+      > a:nth-child(2):hover { color: @hl-amber; }
+      > a:nth-child(3):hover { color: @hl-rose; }
+
+      > a:hover > i {
+        transform: scale(1.12) rotate(-6deg);
       }
+      > a:nth-child(1):hover > i { background: @hl-cyan; color: @ink; }
+      > a:nth-child(2):hover > i { background: @hl-amber; color: @ink; }
     }
 
     .topbar__availability {
-      gap: 8px !important;
-      padding: 5px 10px !important;
-      border: 0 !important;
-      border-radius: 999px;
-      background: rgb(62 139 105 / 22%);
+      color: @hl-green !important;
       font-size: 13px;
-      margin-left: 10px;
+      font-weight: 600;
     }
 
     .topbar__availability-dot {
@@ -104,53 +136,62 @@
       height: 8px;
       flex: 0 0 8px;
       border-radius: 50%;
-      background: #55D6A0;
-      box-shadow: 0 0 10px rgb(85 214 160 / 40%);
+      background: @hl-green;
+      animation: topbar-pulse 1.8s infinite;
     }
 
     .social {
       display: inline-grid;
       place-items: center;
-      width: 36px;
-      height: 32px;
-      color: #F0F0F0;
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      color: #FFFFFF;
       font-size: 1.05rem;
       text-decoration: none;
-      transition: color .15s, transform .15s;
+      transition: background .15s, transform .15s;
 
       &:hover {
-        transform: translateY(-1px);
+        transform: translateY(-2px);
+        background: rgb(255 255 255 / 10%);
       }
 
-      &--linkedin i { color: #0A66C2; }
+      &--linkedin i { color: #4DA3FF; }
       &--github i,
-      &--x i { color: #F0F0F0; }
-      &--youtube i { color: #FF0033; }
+      &--x i { color: #FFFFFF; }
+      &--youtube i { color: #FF4D6D; }
     }
 
     .vr-line {
       width: 1px;
       height: 18px;
+      margin: 0 6px;
       background: rgb(255 255 255 / 18%);
     }
 
+    // highlighted pill
     .client-portal {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 0 16px;
-      color: #F0F0F0;
+      padding: 6px 14px;
+      margin-left: 6px;
+      border-radius: 4px;
+      background: @hl-cyan;
+      color: @ink;
+      font-weight: 700;
       text-decoration: none;
       white-space: nowrap;
-      transition: color .15s;
+      transition: background .15s, transform .15s;
 
       i {
-        color: @orange;
+        color: @ink;
         font-size: 1.05rem;
       }
 
       &:hover {
-        color: @orange;
+        background: @hl-amber;
+        transform: translateY(-1px);
       }
     }
 
@@ -167,13 +208,14 @@
 
   &__main.mat-toolbar {
     --mat-toolbar-standard-height: @h;
-    --mat-toolbar-container-background-color: @bg;
+    --mat-toolbar-container-background-color: rgba(255, 255, 255, 0.9);
     --mat-toolbar-container-text-color: @ink;
     height: @h;
     padding: 0;
-    background: @bg;
+    background: rgba(255, 255, 255, 0.9);
     color: @ink;
     border-bottom: 1px solid @line;
+    backdrop-filter: blur(12px);
     transition: height .2s ease, box-shadow .2s ease;
 
     .container {
@@ -185,9 +227,10 @@
   &.is-scrolled &__main.mat-toolbar {
     --mat-toolbar-standard-height: @h-small;
     height: @h-small;
-    box-shadow: 0 10px 25px rgb(55 58 54 / 10%);
+    box-shadow: 0 10px 25px rgb(11 18 32 / 8%);
   }
 
+  // ---------- Brand + animated logo ----------
   .brand {
     display: inline-flex;
     align-items: center;
@@ -199,36 +242,61 @@
     &__mark {
       width: 44px;
       height: 44px;
-      transition: transform .25s;
+      overflow: visible;
     }
 
-    &:hover &__mark {
-      transform: translateX(3px);
+    &__chev {
+      fill: none;
+      stroke-width: 6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 100;
+      stroke-dashoffset: 100;
+
+      &--1 {
+        stroke: @ink;
+        animation: brand-draw .7s .1s ease-out forwards;
+      }
+
+      &--2 {
+        stroke: @accent;
+        animation:
+          brand-draw .7s .45s ease-out forwards,
+          brand-nudge 3.2s 1.6s ease-in-out infinite;
+      }
+    }
+
+    &:hover &__chev--2 {
+      animation:
+        brand-draw .01s forwards,
+        brand-nudge 1s ease-in-out infinite;
     }
 
     &__name {
       display: flex;
       flex-direction: column;
       line-height: 1.05;
+      font-family: @font;
 
       span {
         font-size: 1.45rem;
         font-weight: 800;
-        letter-spacing: -.02em;
+        letter-spacing: -.035em;
       }
 
       em {
         font-style: normal;
-        color: @orange;
+        color: @accent;
       }
 
       small {
-        margin-top: 3px;
+        margin-top:2px;
         font-size: .62rem;
         font-weight: 500;
         letter-spacing: .3em;
-        color: rgb(55 58 54 / 78%);
+        color: @subtle;
         text-transform: none;
+        margin-left: 2px;
       }
     }
   }
@@ -240,50 +308,54 @@
   .divider {
     width: 1px;
     height: 38px;
-    background: rgb(255 255 255 / 18%);
+    background: @line;
     margin: 0 6px;
   }
 
   .desktop-nav {
-    gap: 2px;
+    gap: 10px;
     min-width: 0;
   }
 
   .nav-link.mat-mdc-button,
   .nav-link.mat-mdc-button:not(:disabled) {
     height: 42px;
-    padding: 0 8px;
+    padding: 0 10px;
     border-radius: 0;
-    font: 600 .95rem 'Montserrat', sans-serif;
-    color: @ink;
+    font: 500 .95rem @font;
+    color: @muted;
     letter-spacing: 0;
+    transition: color .15s;
 
     i {
       font-size: .7rem;
       margin-left: 6px;
-      color: rgb(55 58 54 / 72%);
+      color: @subtle;
       transition: transform .2s;
     }
 
     &:hover {
       background: transparent;
+      color: @ink;
     }
 
     &.mat-mdc-menu-trigger[aria-expanded='true'] {
       background: transparent;
+      color: @ink;
 
       i {
         transform: rotate(180deg);
-        color: @orange;
+        color: @accent;
       }
     }
 
     &.active {
-      color: @blue;
+      color: @accent;
+      font-weight: 700;
     }
 
     &:focus-visible {
-      outline: 2px solid @orange;
+      outline: 2px solid @accent;
       outline-offset: 3px;
     }
 
@@ -296,32 +368,31 @@
   .search {
     flex: 0 0 40px;
     color: @ink;
-    border: 0;
+    border: 1px solid @line;
     border-radius: 50%;
-    background: transparent;
+    background: #FFFFFF;
     box-shadow: none;
-    transition: color .15s, background .15s, transform .15s;
+    transition: none;
 
     i {
       font-size: 1.05rem;
     }
 
     &:hover {
-      background: transparent;
-      color: @orange;
-      transform: scale(1.08);
+      background: #FFFFFF;
+      color: @accent;
+      border-color: @accent;
     }
   }
 
   .search-form {
     align-items: center;
-    width: 250px;
-    height: 42px;
+    width: 180px;
+    height: 40px;
     border-bottom: 1px solid @line;
-    transition: border-color .15s ease;
 
     &:focus-within {
-      border-color: @orange;
+      border-color: @accent;
     }
   }
 
@@ -334,10 +405,10 @@
     outline: 0;
     color: @ink;
     background: transparent;
-    font: 500 .9rem 'Montserrat', sans-serif;
+    font: 500 .9rem @font;
 
     &::placeholder {
-      color: rgb(55 58 54 / 60%);
+      color: @subtle;
     }
   }
 
@@ -347,10 +418,33 @@
     height: 36px;
     border-radius: 0;
     color: @ink;
+    transition: none;
 
     &:hover {
-      color: @orange;
+      color: @accent;
       background: transparent;
+    }
+  }
+
+  // search: no Material ripple / hover-focus overlay animations, instant state changes
+  .search,
+  .search-action.mat-mdc-icon-button {
+    --mat-icon-button-state-layer-color: transparent;
+    --mat-icon-button-ripple-color: transparent;
+
+    .mat-mdc-button-ripple,
+    .mat-mdc-button-persistent-ripple,
+    .mat-mdc-button-persistent-ripple::before,
+    .mat-ripple-element,
+    .mat-focus-indicator::before {
+      display: none !important;
+      transition: none !important;
+      animation: none !important;
+    }
+
+    &:focus-visible {
+      outline: 2px solid @accent;
+      outline-offset: 2px;
     }
   }
 
@@ -363,18 +457,19 @@
     color: @ink;
     background: @bg;
     border: 1px solid @line;
+    border-radius: 8px;
     font-size: .75rem;
   }
 
   .quote-link.mat-mdc-unelevated-button {
-    .pill(@orange, #fff);
+    .pill(@ink, #fff);
     flex: 0 0 auto;
     height: 46px;
     min-width: 144px;
-    font: 600 .95rem 'Montserrat', sans-serif;
+    font: 700 .95rem @font;
     letter-spacing: 0;
-    box-shadow: 0 8px 20px rgb(212 129 102 / 24%);
-    transition: background .15s, transform .15s;
+    box-shadow: 0 14px 26px rgb(11 18 32 / 20%);
+    transition: background .15s, transform .15s, box-shadow .15s;
 
     i {
       margin-left: 8px;
@@ -382,12 +477,12 @@
     }
 
     &:hover {
-      background: @orange-dark;
-      box-shadow: 0 10px 24px rgb(212 129 102 / 30%);
-      transform: translateY(-1px);
+      background: @accent;
+      box-shadow: 0 12px 26px rgb(14 116 144 / 35%);
+      transform: translateY(-2px);
 
       i {
-        transform: translateX(3px);
+        transform: translateX(4px);
       }
     }
 
@@ -438,7 +533,7 @@
     padding: 12px 24px 24px;
     background: @bg;
     border-bottom: 1px solid @line;
-    box-shadow: 0 20px 40px rgb(55 58 54 / 12%);
+    box-shadow: 0 20px 40px rgb(11 18 32 / 12%);
 
     .mat-accordion {
       --mat-expansion-container-background-color: transparent;
@@ -453,7 +548,7 @@
 
     .mat-expansion-panel-header {
       padding: 0 4px;
-      font: 600 1rem 'Montserrat', sans-serif;
+      font: 600 1rem @font;
       color: @ink;
     }
 
@@ -478,11 +573,11 @@
     }
 
     .m-social {
-      color: rgb(55 58 54 / 72%);
+      color: @subtle;
       font-size: 1.1rem;
 
       i:first-child { color: #0A66C2; }
-      i:nth-child(2) { color: #373A36; }
+      i:nth-child(2) { color: @ink; }
       i:nth-child(3) { color: #FF0033; }
 
     }
@@ -492,9 +587,11 @@
 .mega-menu.mat-mdc-menu-panel {
   max-width: 760px;
   min-width: 300px;
-  border-radius: 16px;
+  border-radius: 4px;
   border: 1px solid @line;
-  box-shadow: 0 24px 60px rgb(55 58 54 / 12%);
+  box-shadow: 0 24px 60px rgb(11 18 32 / 14%);
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: rgba(255, 255, 255, 0.9)!important;
 
   .mat-mdc-menu-content {
     padding: 12px;
@@ -516,7 +613,7 @@
     min-height: 0;
     padding: 10px 12px;
     border-radius: 12px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: @font;
 
     .mdc-list-item__primary-text {
       display: flex;
@@ -528,14 +625,15 @@
       display: block;
       font-weight: 600;
       font-size: .92rem;
-      color: @ink;
+      color: #0E7490
     }
 
     small {
       display: block;
       font-size: .78rem;
-      color: rgb(55 58 54 / 72%);
+      color: @subtle;
       margin-top: 2px;
+      
     }
 
     &__icon {
@@ -546,20 +644,42 @@
       height: 42px;
       border-radius: 11px;
       background: @pale;
-      color: @blue;
+      color: @accent;
       font-size: 1.15rem;
       transition: background .15s, color .15s;
     }
 
     &:hover {
-      background: @pale;
+      background: #F4F7FA;
 
       .mega-item__icon {
-        background: @blue;
-        color: #fff;
+        // background: @accent;
+        // color: #fff;
+        cursor: pointer;
       }
     }
   }
+}
+
+// ---------- Animations ----------
+@keyframes brand-draw {
+  from { stroke-dashoffset: 100; }
+  to   { stroke-dashoffset: 0; }
+}
+
+// second chevron nudges forward every few seconds: "fast forward"
+@keyframes brand-nudge {
+  0%, 70%, 100% { transform: translateX(0); }
+  82%           { transform: translateX(5px); }
+}
+
+@keyframes strip-shift {
+  to { background-position: 200% 0; }
+}
+
+@keyframes topbar-pulse {
+  0%   { box-shadow: 0 0 0 0 rgb(34 197 94 / 55%); }
+  100% { box-shadow: 0 0 0 10px rgb(34 197 94 / 0%); }
 }
 
 @media (max-width: (@bp - 1)) {
@@ -592,5 +712,10 @@
   .topbar,
   .topbar * {
     transition: none !important;
+    animation: none !important;
+  }
+
+  .topbar .brand__chev {
+    stroke-dashoffset: 0;
   }
 }
