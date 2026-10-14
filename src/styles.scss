@@ -2,49 +2,49 @@
 @import 'bootstrap-icons/font/bootstrap-icons.css';
 
 :root {
-    --ink: #292E2B;
-    --ink2: #E9E3DB;
-    --line: rgb(41 46 43 / 13%);
-    --cyan: #C87558;
-    --amber: #E7D9C9;
-    --mint: #DCE5DC;
-    --coral: #B95F45;
-    --brand-highlight: #D98C70;
+    --ink: #2A1F2D;
+    --ink2: #F5EEDB;
+    --line: rgb(42 31 45 / 12%);
+    --cyan: #7D3CFF;
+    --amber: #F2D53C;
+    --mint: #FCEED1;
+    --coral: #C80E13;
+    --brand-highlight: #D8C3FF;
     --action-radius: 4px;
     --action-height: 48px;
-    --paper: #F7F5F1;
-    --text: #343936;
-    --mute: rgb(52 57 54 / 72%);
-    --lmute: rgb(52 57 54 / 68%);
+    --paper: #FFFDF9;
+    --text: #3B2E3E;
+    --mute: rgb(59 46 62 / 72%);
+    --lmute: rgb(59 46 62 / 68%);
 
-    --mat-sys-primary: #C87558;
-    --mat-sys-on-primary: #373A36;
-    --mat-sys-primary-container: rgb(200 117 88 / 16%);
-    --mat-sys-on-primary-container: #373A36;
-    --mat-sys-inverse-primary: #C87558;
-    --mat-sys-secondary: #E9E3DB;
-    --mat-sys-on-secondary: #292E2B;
-    --mat-sys-secondary-container: #E9E3DB;
-    --mat-sys-on-secondary-container: #292E2B;
-    --mat-sys-tertiary: #C87558;
-    --mat-sys-on-tertiary: #292E2B;
-    --mat-sys-error: #B95F45;
+    --mat-sys-primary: #7D3CFF;
+    --mat-sys-on-primary: #FFFFFF;
+    --mat-sys-primary-container: rgb(125 60 255 / 12%);
+    --mat-sys-on-primary-container: #2A1F2D;
+    --mat-sys-inverse-primary: #7D3CFF;
+    --mat-sys-secondary: #F2D53C;
+    --mat-sys-on-secondary: #2A1F2D;
+    --mat-sys-secondary-container: #F7F0B9;
+    --mat-sys-on-secondary-container: #2A1F2D;
+    --mat-sys-tertiary: #C80E13;
+    --mat-sys-on-tertiary: #FFFFFF;
+    --mat-sys-error: #C80E13;
     --mat-sys-on-error: #FFFFFF;
-    --mat-sys-background: #F7F5F1;
-    --mat-sys-on-background: #292E2B;
-    --mat-sys-surface: #F7F5F1;
+    --mat-sys-background: #FFFDF9;
+    --mat-sys-on-background: #2A1F2D;
+    --mat-sys-surface: #FFFDF9;
     --mat-sys-surface-bright: #FFFFFF;
-    --mat-sys-surface-container: #F2EFEA;
-    --mat-sys-surface-container-high: #E9E3DB;
-    --mat-sys-surface-container-highest: #E9E3DB;
-    --mat-sys-surface-container-low: #F7F5F1;
+    --mat-sys-surface-container: #FFF8F0;
+    --mat-sys-surface-container-high: #FCEED1;
+    --mat-sys-surface-container-highest: #F7E7B9;
+    --mat-sys-surface-container-low: #FFFDF9;
     --mat-sys-surface-container-lowest: #FFFFFF;
-    --mat-sys-surface-variant: #E9E3DB;
-    --mat-sys-on-surface: #292E2B;
-    --mat-sys-on-surface-variant: #515753;
-    --mat-sys-outline: rgb(41 46 43 / 38%);
-    --mat-sys-outline-variant: rgb(41 46 43 / 16%);
-    --mat-sys-surface-tint: #C87558;
+    --mat-sys-surface-variant: #FCEED1;
+    --mat-sys-on-surface: #2A1F2D;
+    --mat-sys-on-surface-variant: #58465C;
+    --mat-sys-outline: rgb(42 31 45 / 28%);
+    --mat-sys-outline-variant: rgb(42 31 45 / 14%);
+    --mat-sys-surface-tint: #7D3CFF;
 
     --bs-body-color: var(--text);
     --bs-body-bg: var(--paper);
@@ -53,6 +53,35 @@
     --bs-border-color: var(--line);
     --bs-link-color: var(--cyan);
     --bs-link-hover-color: var(--ink);
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes floaty {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        box-shadow: 0 0 0 rgba(200, 117, 88, 0);
+    }
+    50% {
+        box-shadow: 0 0 18px rgba(200, 117, 88, 0.25);
+    }
 }
 
 * {
@@ -71,11 +100,26 @@ html {
 
 body {
     color: var(--text);
-    background: var(--paper);
+    background:
+        radial-gradient(circle at top left, rgb(200 117 88 / 8%), transparent 24%),
+        linear-gradient(180deg, #fffdfb 0%, #f5f1ec 100%);
     line-height: 1.65;
     font-optical-sizing: auto;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+}
+
+section,
+.card,
+.btn,
+.topbar__main,
+.hero-section,
+.deploy-card,
+.service-card,
+.technology-chip,
+.industry-card,
+.contact-card {
+    animation: fadeUp 0.8s ease both;
 }
 
 h1,
@@ -93,6 +137,10 @@ h3 {
 
 .sec {
     padding: 96px 0
+}
+
+section {
+    position: relative;
 }
 
 .dark {
@@ -127,7 +175,9 @@ h2 {
     font-size: .95rem;
     text-decoration: none;
     border: 2px solid transparent;
-    cursor: pointer
+    cursor: pointer;
+    box-shadow: 0 8px 18px rgb(41 46 43 / 7%);
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
 }
 
 .btn.p {
@@ -137,21 +187,28 @@ h2 {
 
 .btn:not(.g):hover {
     background: var(--mint);
-    color: var(--ink)
+    color: var(--ink);
+    transform: translateY(-1px);
+    box-shadow: 0 14px 24px rgb(41 46 43 / 10%);
 }
 
 .btn.p:hover {
     background: var(--mint);
-    color: var(--ink)
+    color: var(--ink);
+    transform: translateY(-1px);
+    box-shadow: 0 14px 24px rgb(41 46 43 / 10%);
 }
 
 .btn.g {
-    border-color: rgb(55 58 54 / 32%);
+    border-color: rgb(55 58 54 / 26%);
+    background: rgba(255, 255, 255, 0.72);
     color: var(--ink)
 }
 
 .btn.g:hover {
-    background: rgb(212 129 102 / 12%)
+    background: rgb(212 129 102 / 10%);
+    box-shadow: 0 12px 20px rgb(41 46 43 / 8%);
+    border-color: rgb(55 58 54 / 36%);
 }
 
 .grid {
@@ -168,16 +225,17 @@ h2 {
 }
 
 .card {
-    background: var(--paper);
-    border: 1px solid rgb(55 58 54 / 16%);
-    border-radius: 16px;
-    padding: 26px
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgb(55 58 54 / 12%);
+    border-radius: 18px;
+    padding: 26px;
+    box-shadow: 0 15px 32px rgb(41 46 43 / 6%);
 }
 
 .card:hover {
     border-color: var(--cyan);
     transform: translateY(-4px);
-    box-shadow: 0 18px 42px rgb(41 46 43 / 10%);
+    box-shadow: 0 24px 42px rgb(41 46 43 / 10%);
 }
 
 .card p {
@@ -336,8 +394,8 @@ main section {
 
 .hero-section .hero-container {
     width: 100%;
-    padding-top: clamp(4rem, 8vw, 7rem);
-    padding-bottom: clamp(4rem, 8vw, 7rem);
+    padding-top: clamp(2rem, 2vw, 2rem);
+    padding-bottom: clamp(2rem, 2vw, 2rem);
 }
 
 .hero-section h1 {
@@ -410,8 +468,8 @@ main section {
     position: relative;
     z-index: 1;
     padding: 1.5rem 0 !important;
-    color: #F7F5F1;
-    background: linear-gradient(105deg, #252A27, #353A36) !important;
+        background: linear-gradient(100deg, #0B1220 0%, #0F2433 55%, #0B3B4A 100%) !important;
+    color: #E6ECF5;
 }
 
 .stats-section .container {

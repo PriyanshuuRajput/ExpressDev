@@ -28,6 +28,13 @@
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss"
             ],
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "src/wwwroot",
+                "output": "/"
+              }
+            ],
             "tsConfig": "tsconfig.app.json"
           }
         },

@@ -1,7 +1,6 @@
-import { Component, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormsModule, NgForm } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import * as Content from '../../content';
 
 @Component({
   selector: 'app-contact-section',
@@ -11,13 +10,48 @@ import * as Content from '../../content';
   styleUrl: './contact-section.component.less',
 })
 export class ContactSectionComponent {
-  readonly services = Content.SERVICES;
-  readonly sent = signal(false);
-  readonly model = { name: '', email: '', service: '', details: '' };
+  sent = false;
 
-  submit(valid: boolean | null): void {
-    if (valid) {
-      this.sent.set(true);
+  model = {
+    name: '',
+    email: '',
+    service: '',
+    details: '',
+    budget: '',
+    timeline: '',
+  };
+
+  readonly services = [
+    { value: 'software-development', label: 'Software Development' },
+    { value: 'web-development', label: 'Web Development' },
+    { value: 'mobile-development', label: 'Mobile App Development' },
+    { value: 'ui-ux-design', label: 'UI/UX Design' },
+    { value: 'cloud-devops', label: 'Cloud & DevOps' },
+    { value: 'cybersecurity', label: 'Cybersecurity' },
+    { value: 'it-consulting', label: 'IT Consulting' },
+    { value: 'other', label: 'Other' },
+  ];
+
+  submit(form: NgForm): void {
+    if (form.invalid) {
+      form.control.markAllAsTouched();
+      return;
     }
+
+    // Connect your backend/API here to deliver the project inquiry.
+    // Only set sent = true after the API confirms successful submission.
+    console.log('Project inquiry:', { ...this.model });
+  }
+
+  resetForm(): void {
+    this.sent = false;
+    this.model = {
+      name: '',
+      email: '',
+      service: '',
+      details: '',
+      budget: '',
+      timeline: '',
+    };
   }
 }

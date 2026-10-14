@@ -1,36 +1,34 @@
 export const SERVICES = [
- {c:'Build',i:'💻',t:'Custom software',d:'Enterprise apps, SaaS platforms, internal tools and APIs built around your workflow.'},
- {c:'Build',i:'🌐',t:'Web development',d:'Fast, SEO-ready websites, portals and e-commerce in Angular, React, Next.js and Node.'},
- {c:'Build',i:'📱',t:'Mobile apps',d:'iOS, Android and cross-platform apps with Flutter and React Native.'},
- {c:'Build',i:'🎨',t:'UI/UX design',d:'User research, prototypes and design systems your team can reuse.'},
- {c:'Build',i:'🧠',t:'AI & data',d:'Chatbots, automation, analytics dashboards and machine-learning features.'},
- {c:'Run',i:'☁️',t:'Cloud & DevOps',d:'AWS, Azure and GCP setup, CI/CD pipelines, Kubernetes and cost control.'},
- {c:'Run',i:'🛠️',t:'Managed IT & support',d:'24/7 monitoring, maintenance and a help desk with agreed response times.'},
- {c:'Run',i:'🧪',t:'QA & testing',d:'Manual and automated testing, performance and accessibility checks.'},
- {c:'Secure',i:'🛡️',t:'Cybersecurity',d:'Penetration testing, vulnerability scans and incident response.'},
- {c:'Secure',i:'📋',t:'Compliance',d:'ISO 27001, SOC 2 and GDPR readiness with documented controls.'},
- {c:'Advise',i:'🧭',t:'IT consulting',d:'Architecture reviews, technology selection and roadmap planning.'},
- {c:'Advise',i:'🔄',t:'Legacy modernisation',d:'Move old systems to modern stacks without stopping the business.'}];
-export const STATS=[['250+','projects delivered'],['40+','engineers & designers'],['12','countries served'],['98%','clients who return']];
-export const INDUSTRIES=['Healthcare','Fintech & banking','Retail & e-commerce','Logistics','Education','Manufacturing','Real estate','Travel & hospitality'];
-export const STEPS=[{t:'Discover',d:'Workshops to define goals, users and scope. You get a fixed estimate in 5 days.'},{t:'Design',d:'Wireframes, clickable prototype and architecture you approve before coding.'},{t:'Build',d:'Two-week sprints with a live demo and working release at the end of each.'},{t:'Launch',d:'Load-tested release, monitoring and a handover that includes full source code.'},{t:'Support',d:'Ongoing improvements and 24/7 cover under a monthly plan.'}];
-export const STACK={Frontend:['Angular','React','Next.js','Vue','TypeScript','Tailwind'],Backend:['Node.js','NestJS','.NET','Java Spring','Python','Go'],Mobile:['Flutter','React Native','Swift','Kotlin'],'Cloud & Data':['AWS','Azure','GCP','Kubernetes','Terraform','PostgreSQL','MongoDB']};
+ {c:'Community',i:'👥',t:'Community platform',d:'Private member hubs, discussion spaces, profiles, connections and engagement journeys for growing organizations.'},
+ {c:'Learning',i:'🎓',t:'LMS & learning paths',d:'Structured courses, certifications, progress tracking and role-based learning experiences for teams and members.'},
+ {c:'Commerce',i:'🛒',t:'Membership & commerce',d:'Subscriptions, paid access, digital products, events and storefront flows connected to your community.'},
+ {c:'Design',i:'🎨',t:'UX design systems',d:'Clear user journeys, conversion-focused flows and polished interfaces your audience can trust and use easily.'},
+ {c:'Product',i:'🧠',t:'Platform engineering',d:'Custom apps, workflows, automation and integrations built around how your community actually operates.'},
+ {c:'Scale',i:'☁️',t:'Cloud & DevOps',d:'Reliable hosting, deployments, monitoring and performance tuning so your platform stays fast and secure.'},
+ {c:'Support',i:'🛠️',t:'Managed support',d:'Ongoing maintenance, monitoring and feature improvements to keep your learning ecosystem growing.'},
+ {c:'Security',i:'🛡️',t:'Security & compliance',d:'Member data protection, access controls and governance aligned to modern business requirements.'},
+ {c:'Growth',i:'📈',t:'Growth consulting',d:'Roadmaps, onboarding flows, activation strategies and product decisions that drive adoption and retention.'},
+ {c:'Insights',i:'📊',t:'Analytics & reporting',d:'Track engagement, course completion, member activity and business impact with dashboards your team can act on.'}];
+export const STATS=[ ['Web Development', 'Websites & custom applications'],['UI/UX Design', 'Intuitive digital experiences'],['Integrations', 'Connected business workflows'],['Ongoing Support', 'Maintenance & optimization']]
+export const INDUSTRIES=['Professional associations','Higher education & academies','Corporate learning teams','Membership organizations','SaaS communities','B2B networks','Healthcare education','Non-profit networks'];
+export const STEPS=[{t:'Discover',d:'Map your audience, learning goals and community workflows. We define priorities and recommend the right platform model.'},{t:'Design',d:'Shape the member experience, content flow and conversion journeys before any build work starts.'},{t:'Build',d:'Deliver the product in focused sprints with live demos, learning content flows and member experiences.'},{t:'Launch',d:'Go live with secure infrastructure, onboarding and a rollout plan designed for adoption.'},{t:'Grow',d:'Optimize retention, memberships and learning outcomes with analytics, support and roadmap planning.'}];
+export const STACK={Frontend:['Angular','React','Next.js','TypeScript','Tailwind','Vue'],Backend:['Node.js','NestJS','Python','PHP','PostgreSQL','MongoDB'],Mobile:['Flutter','React Native','Progressive Web Apps'],'Cloud & Data':['AWS','Azure','GCP','Kubernetes','Docker','Supabase','Redis']};
 export const WORK=[
- {n:'MediTrack',k:'Healthcare',d:'Patient scheduling platform for a 40-clinic network, with web and mobile apps.',m:['-60% no-shows','3 months to launch']},
- {n:'PayBridge',k:'Fintech',d:'Payments dashboard and API handling real-time reconciliation across 8 banks.',m:['2M transactions/day','99.99% uptime']},
- {n:'ShopNest',k:'E-commerce',d:'Headless storefront rebuilt in Angular and Node with a new checkout.',m:['+38% conversion','1.1s page load']},
- {n:'FleetPilot',k:'Logistics',d:'Route planning and live tracking for 1,200 vehicles.',m:['-22% fuel cost','Live GPS in 40 cities']}];
+ {n:'MemberLoop',k:'Professional community',d:'Community platform for a B2B members network with events, discussion groups and gated learning tracks.',m:['+41% member engagement','2x event attendance']},
+ {n:'CampusHub',k:'Education',d:'Learning portal for an executive education program with cohort-based courses, member profiles and commerce.',m:['+63% course completion','3x lead conversion']},
+ {n:'GuildFlow',k:'Associations',d:'Membership platform for a professional association with subscriptions, onboarding and knowledge-sharing.',m:['+52% retention','Faster member activation']},
+ {n:'GrowthCircle',k:'Corporate learning',d:'Internal learning and community platform built for onboarding, training and upskilling across teams.',m:['-28% onboarding time','Stronger team engagement']}];
 export const PLANS=[
- {n:'Starter',p:'$2,500',u:'one-time',d:'For launching a professional website.',f:['Up to 8 pages','Responsive design','Basic SEO','Contact form','30 days support']},
- {n:'Growth',p:'$12,000',u:'from',d:'For custom web apps and mobile products.',f:['Discovery & UX design','Custom development','Admin dashboard','Cloud deployment','90 days support'],hot:true},
- {n:'Enterprise',p:'Custom',u:'retainer',d:'For dedicated teams and managed IT.',f:['Dedicated engineers','24/7 support & SLA','Security & compliance','DevOps & monitoring','Quarterly roadmap']}];
+ {n:'Community Launch',p:'$2,500',u:'one-time',d:'Launch a focused member experience with onboarding, access and essential engagement flows.',f:['Landing page + member setup','Basic community features','Learning module starter','WooCommerce-ready setup','30 days support']},
+ {n:'Growth Community',p:'$12,000',u:'from',d:'Scale your portal with memberships, learning paths and stronger customer acquisition journeys.',f:['Discovery and UX planning','Custom community features','LMS and member journeys','Commerce and subscriptions','90 days support'],hot:true},
+ {n:'Enterprise Network',p:'Custom',u:'retainer',d:'Run a multi-team platform with governance, automation and strategic product support.',f:['Dedicated product team','Advanced analytics and automation','Security & governance','Ongoing roadmap planning','Priority support']}];
 export const QUOTES=[
- {q:'ExpressDev Technologies shipped our platform in twelve weeks and the code was clean enough for our own team to take over.',a:'Aarav Mehta',r:'CTO, PayBridge'},
- {q:'They explained trade-offs in plain language and never missed a sprint demo.',a:'Sarah Collins',r:'Operations Director, MediTrack'},
- {q:'Our site is faster, our checkout converts better, and support answers within the hour.',a:'Rohan Kapoor',r:'Founder, ShopNest'}];
+ {q:'They helped us turn our learning community into a real growth engine. Engagement and retention improved almost immediately.',a:'Maya Shah',r:'Head of Community, MemberLoop'},
+ {q:'The product experience feels premium and the learning flows are easy for our members to adopt.',a:'Daniel Johnson',r:'Director, CampusHub'},
+ {q:'From membership to commerce, the platform finally works as one connected system instead of separate tools.',a:'Aisha Patel',r:'Operations Lead, GuildFlow'}];
 export const FAQ=[
- ['How much does a project cost?','Most websites start at $2,500 and custom applications from $12,000. After a short discovery phase you get a fixed quote.'],
- ['How long does development take?','A business website takes 3 to 5 weeks. Web or mobile apps usually take 3 to 6 months, delivered in two-week sprints.'],
- ['Do I own the source code?','Yes. Full source code, documentation and cloud access are handed over at launch.'],
- ['Can you work with our in-house team?','Yes. We can add engineers to your team or take over a complete product.'],
- ['Do you offer support after launch?','Yes. Plans cover monitoring, bug fixes, updates and 24/7 incident response.']];
+ ['What is included in a community platform build?','We design and build the complete member experience, including onboarding, profiles, learning paths, access controls, and integration with commerce or subscriptions.'],
+ ['How long does a launch take?','Most community products launch in 4 to 8 weeks depending on complexity, content structure and integrations.'],
+ ['Can this work with BuddyPress and WooCommerce?','Yes. We can design around BuddyPress, WooCommerce, LMS workflows and custom member experiences with clean integrations.'],
+ ['Do you support ongoing growth after launch?','Absolutely. We offer roadmap support, analytics refinement, content improvements and platform maintenance.'],
+ ['Can you help with member acquisition and retention?','Yes. We can map onboarding, activation, and engagement strategies so your platform grows with measurable results.']];

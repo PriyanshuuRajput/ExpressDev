@@ -1,41 +1,265 @@
-<footer class="footer-section py-5">
-  <div class="container">
-    <div class="row g-4">
-      <div class="col-md-6 col-lg-4">
-        <a class="brand" href="#top" aria-label="ExpressDev Technologies home">
-          <svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true">
-            <path d="M8 20H49L38 31H8Z" fill="#D98C70"/>
-            <path d="M8 44H39L28 55H8Z" fill="#C87558"/>
-            <path d="M8 68H29L18 79H8Z" fill="#D98C70"/>
-            <path d="M48 17L81 50L48 83L38 73L61 50L38 27Z" fill="#F7F5F1"/>
-          </svg>
-          <span class="brand-name">
+<footer class="footer-section">
+  <div class="container py-5">
+
+    <!-- Featured CTA banner -->
+    <section class="footer-hero rounded-4">
+      <div class="row g-4 align-items-center">
+
+        <div class="col-lg-5">
+          <span class="footer-eyebrow">
+            <span class="eyebrow-line"></span>
+            LET'S BUILD TOGETHER
+          </span>
+
+          <h2 class="footer-hero-title mt-3 mb-3">
+            Have a <span>project</span> in mind?
+          </h2>
+
+          <p class="footer-hero-description mb-4">
+            Let's discuss how we can turn your ideas into scalable
+            software, web solutions and digital products.
+          </p>
+
+          <a mat-flat-button class="footer-hero-button" href="#contact">
+            Start a conversation
+            <i class="bi bi-arrow-right"></i>
+          </a>
+        </div>
+
+        <div class="col-lg-3 footer-benefits">
+          <div class="benefit-item">
+            <span class="benefit-icon">
+              <i class="bi bi-chat-dots"></i>
+            </span>
+            <div>
+              <h3>Quick response</h3>
+              <p>We usually reply within 24 hours.</p>
+            </div>
+          </div>
+
+          <div class="benefit-item">
+            <span class="benefit-icon">
+              <i class="bi bi-people"></i>
+            </span>
+            <div>
+              <h3>Dedicated team</h3>
+              <p>Work with experts who care.</p>
+            </div>
+          </div>
+
+          <div class="benefit-item">
+            <span class="benefit-icon">
+              <i class="bi bi-shield-check"></i>
+            </span>
+            <div>
+              <h3>From idea to impact</h3>
+              <p>We build, scale and support.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 footer-hero-art" aria-hidden="true">
+          <div class="art-circle"></div>
+
+          <div class="art-card art-card-back">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <div class="art-card art-card-front">
+            <i class="bi bi-chat-left-text"></i>
+            <div class="art-lines">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+
+          <i class="bi bi-send-fill art-send"></i>
+          <span class="art-dash"></span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Main footer content -->
+    <div class="row g-4 footer-main">
+
+      <!-- Brand -->
+      <div class="col-lg-3 col-md-6 footer-brand-column">
+        <a class="brand d-inline-flex align-items-center gap-2 text-decoration-none"
+           href="#top"
+           aria-label="ExpressDev Technologies home">
+
+          <img
+            class="brand-mark"
+            src="/logos/logo-mark-animated.svg"
+            alt=""
+            width="48"
+            height="48"
+          />
+
+          <span class="brand__name">
             <span>Express<em>Dev</em></span>
-            <small>Technologies</small>
+            <small>TECHNOLOGIES</small>
           </span>
         </a>
-        <p class="brand-description mt-3">
-          Software, web and IT services for growing companies.
+
+        <p class="brand-description mt-4 mb-4">
+          We build modern digital experiences, scalable software
+          and technology solutions that help businesses grow.
         </p>
-      </div>
-      @for (column of columns; track column.title) {
-        <div class="col-6 col-lg-2">
-          <h2 class="footer-heading">{{ column.title }}</h2>
-          @for (link of column.links; track link) {
-            <a class="footer-link" href="#services">{{ link }}</a>
-          }
+
+        <div class="footer-socials">
+          <a href="https://www.linkedin.com/"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="LinkedIn">
+            <i class="bi bi-linkedin"></i>
+          </a>
+
+          <a href="https://www.instagram.com/"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="Instagram">
+            <i class="bi bi-instagram"></i>
+          </a>
+
+          <a href="https://github.com/"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="GitHub">
+            <i class="bi bi-github"></i>
+          </a>
+
+          <a href="https://www.youtube.com/"
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="YouTube">
+            <i class="bi bi-youtube"></i>
+          </a>
         </div>
-      }
-      <div class="col-md-6 col-lg-4">
-        <h2 class="footer-heading">Contact</h2>
-        <a class="footer-link" href="mailto:hello@expressdev.example">hello&#64;expressdev.example</a>
-        <a class="footer-link" href="tel:+910000000000">+91 00000 00000</a>
-        <span class="footer-link">Delhi, India</span>
-        <a mat-button class="footer-cta mt-2" href="#contact">Start a conversation</a>
       </div>
+
+      <!-- Services -->
+      <div class="col-6 col-lg-2 col-md-3 footer-link-column">
+        <h3 class="footer-heading">Services</h3>
+
+        <nav class="footer-links" aria-label="Services">
+          <a href="#services">Software Development</a>
+          <a href="#services">Web Development</a>
+          <a href="#services">Cloud &amp; DevOps</a>
+          <a href="#services">Cybersecurity</a>
+          <a href="#services">UI/UX Design</a>
+          <a href="#services">IT Consulting</a>
+        </nav>
+      </div>
+
+      <!-- Company -->
+      <div class="col-6 col-lg-2 col-md-3 footer-link-column">
+        <h3 class="footer-heading">Company</h3>
+
+        <nav class="footer-links" aria-label="Company">
+          <a href="#about">About us</a>
+          <a href="#work">Our work</a>
+          <a href="#careers">Careers</a>
+          <a href="#insights">Blog</a>
+          <a href="/privacy-policy">Privacy Policy</a>
+          <a href="/terms">Terms of Service</a>
+        </nav>
+      </div>
+
+      <!-- Contact -->
+      <div class="col-lg-3 col-md-6 footer-contact-column">
+        <h3 class="footer-heading">Get in touch</h3>
+
+        <p class="footer-contact-intro">
+          We're here to help. Reach out and let's build
+          something great together.
+        </p>
+
+        <a class="contact-item" href="mailto:support@expressdev.in">
+          <span class="contact-icon">
+            <i class="bi bi-envelope"></i>
+          </span>
+          <span class="contact-copy">
+            <strong>support@expressdev.in</strong>
+            <small>Drop us an email</small>
+          </span>
+        </a>
+
+        <a class="contact-item" href="tel:+917500151158">
+          <span class="contact-icon">
+            <i class="bi bi-telephone"></i>
+          </span>
+          <span class="contact-copy">
+            <strong>+91 7500151158</strong>
+            <small>Mon – Fri, 9 AM – 6 PM (IST)</small>
+          </span>
+        </a>
+
+        <div class="contact-item">
+          <span class="contact-icon">
+            <i class="bi bi-geo-alt-fill"></i>
+          </span>
+          <span class="contact-copy">
+            <strong>Noida, India</strong>
+            <small>Our head office</small>
+          </span>
+        </div>
+      </div>
+
+      <!-- Worldwide illustration -->
+      <div class="col-lg-2 footer-world-column">
+        <div class="world-visual" aria-hidden="true">
+          <div class="world-dots"></div>
+
+          <div class="world-label">
+            <strong>Working worldwide</strong>
+            <span>Partnering with clients across the globe.</span>
+          </div>
+
+          <span class="world-pin"></span>
+        </div>
+      </div>
+
     </div>
-    <div class="copyright mt-4 pt-3">
-      © {{ year }} ExpressDev Technologies. All rights reserved.
+  </div>
+
+  <!-- Dark bottom strip: kept as requested -->
+  <div class="footer-bottom-dark">
+    <div class="container">
+      <div class="footer-bottom">
+
+        <p class="copyright">
+          © {{ year }} ExpressDev Technologies. All rights reserved.
+        </p>
+
+        <div class="footer-legal">
+          <a href="/privacy-policy">Privacy Policy</a>
+          <span>•</span>
+          <a href="/terms">Terms of Service</a>
+        </div>
+
+        <div class="footer-worldwide">
+          <span class="worldwide-icon">
+            <i class="bi bi-globe"></i>
+          </span>
+          <span>
+            <strong>Working worldwide</strong>
+            <small>Partnering with clients across the globe.</small>
+          </span>
+        </div>
+
+        <a class="back-to-top" href="#top">
+          Back to top
+          <span class="back-to-top-icon">
+            <i class="bi bi-arrow-up"></i>
+          </span>
+        </a>
+
+      </div>
     </div>
   </div>
 </footer>
