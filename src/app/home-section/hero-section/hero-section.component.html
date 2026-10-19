@@ -1,49 +1,218 @@
-<section id="top" class="hero-section">
-  <div class="container hero-container">
-    <div class="row align-items-center g-4">
-      <div class="col-lg-7 hero-copy">
-        <span class="eyebrow">
-          <span class="status-dot"></span>
-          COMMUNITY + LEARNING PLATFORM
-        </span>
-        <h1>Turn your audience into a growth engine.</h1>
-        <p class="hero-description">
-          Build a member-first platform for learning, engagement and commerce with community tools,
-          structured programs and scalable product experiences your organization can grow with.
-        </p>
-        <div class="hero-actions">
-          <a mat-flat-button class="quote-link d-none d-xl-inline-flex" href="#contact">
-            Launch your platform
-          </a>
-          <a mat-stroked-button class="secondary-action" href="#work">
-            Explore growth story
-          </a>
+
+<section class="hero container-fluid px-3 px-lg-4 py-4">
+  <div class="hero__stage d-flex gap-2 gap-lg-3">
+
+    <!-- Left tab: Company overview -->
+    <button
+      type="button"
+      class="hero-tab hero-tab--company d-none d-lg-flex flex-column align-items-center"
+      aria-label="Company overview"
+      (click)="go(0)"
+    >
+      <span class="hero-tab__line"></span>
+      <span class="hero-tab__label">Company overview</span>
+      <span class="hero-tab__plus">
+        <i class="bi bi-plus-lg" aria-hidden="true"></i>
+      </span>
+    </button>
+
+    <!-- Main carousel -->
+    <article class="hero-main flex-grow-1">
+
+      <!-- Network artwork -->
+      <svg
+        class="hero-main__network"
+        viewBox="0 0 1000 600"
+        preserveAspectRatio="xMidYMid slice"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <defs>
+          <filter
+            id="hero-glow"
+            x="-100%"
+            y="-100%"
+            width="300%"
+            height="300%"
+          >
+            <feGaussianBlur stdDeviation="5" />
+          </filter>
+
+          <radialGradient id="hero-hub">
+            <stop offset="0" stop-color="#ffd9a8" />
+            <stop offset="0.45" stop-color="#ff8a2a" />
+            <stop offset="1" stop-color="#ff8a2a" stop-opacity="0" />
+          </radialGradient>
+        </defs>
+
+        @for (l of links; track $index) {
+          <path
+            [attr.d]="l.d"
+            fill="none"
+            [attr.stroke]="l.hub ? '#ff9a3c' : '#2fc4f0'"
+            [attr.stroke-opacity]="l.hub ? 0.55 : 0.32"
+            stroke-width="0.8"
+          />
+        }
+
+        @for (n of nodes; track $index) {
+          @if (n.hub) {
+            <circle
+              [attr.cx]="n.x"
+              [attr.cy]="n.y"
+              [attr.r]="n.r * 7"
+              fill="url(#hero-hub)"
+            />
+            <circle
+              [attr.cx]="n.x"
+              [attr.cy]="n.y"
+              [attr.r]="n.r"
+              fill="#fff4e0"
+              filter="url(#hero-glow)"
+            />
+            <circle
+              [attr.cx]="n.x"
+              [attr.cy]="n.y"
+              [attr.r]="n.r * 0.6"
+              fill="#ffffff"
+            />
+          } @else {
+            <circle
+              [attr.cx]="n.x"
+              [attr.cy]="n.y"
+              [attr.r]="n.r"
+              fill="#8fe4ff"
+              fill-opacity="0.9"
+            />
+          }
+        }
+      </svg>
+
+      <div class="hero-main__shade"></div>
+
+      <div class="hero-main__inner d-flex flex-column h-100">
+
+        <div class="row flex-grow-1 align-items-center g-0">
+          @for (s of current(); track s.id) {
+            <div class="col-12 col-lg-8 col-xl-7 hero-copy">
+
+              <p class="hero-eyebrow">{{ s.eyebrow }}</p>
+
+              <h1 class="hero-title">
+                {{ s.titleMain }}<br />
+                <span class="hero-title__accent">
+                  {{ s.titleAccent }}
+                </span>
+              </h1>
+
+              <p class="hero-text">{{ s.text }}</p>
+
+              <button mat-flat-button type="button" class="hero-cta">
+                {{ s.cta }}
+                <i class="bi bi-arrow-right" aria-hidden="true"></i>
+              </button>
+
+            </div>
+          }
         </div>
-        <p class="trust-note">
-          <span aria-hidden="true">✓</span>
-          BuddyPress, WooCommerce and LMS built for long-term retention and growth
-        </p>
+
+        <!-- Services and navigation -->
+        <div
+          class="hero-footer d-flex align-items-center justify-content-between flex-wrap gap-3"
+        >
+          <ul
+            class="hero-services list-unstyled d-none d-md-flex align-items-center mb-0"
+          >
+            @for (s of services; track s.label) {
+              <li class="d-flex align-items-center gap-2">
+                <i [class]="s.icon" aria-hidden="true"></i>
+                <span>{{ s.label }}</span>
+              </li>
+            }
+          </ul>
+
+          <div class="hero-arrows d-flex gap-2 ms-auto">
+            <button
+              type="button"
+              class="hero-arrow"
+              aria-label="Previous slide"
+              (click)="prev()"
+            >
+              <i class="bi bi-chevron-left" aria-hidden="true"></i>
+            </button>
+
+            <button
+              type="button"
+              class="hero-arrow"
+              aria-label="Next slide"
+              (click)="next()"
+            >
+              <i class="bi bi-chevron-right" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </article>
+
+    <!-- Right tabs -->
+    @for (t of sideTabs(); track t.slide.id; let i = $index) {
+      <button
+        type="button"
+        class="hero-tab d-none d-lg-flex flex-column align-items-center"
+        [ngClass]="t.slide.tabClass"
+        [attr.aria-label]="t.slide.tabLabel"
+        (click)="go(t.index)"
+      >
+        <span class="hero-tab__label">{{ t.slide.tabLabel }}</span>
+        <span class="hero-tab__plus">
+          <i class="bi bi-plus-lg" aria-hidden="true"></i>
+        </span>
+      </button>
+    }
+
+
+   
+    <div class="hero-contact">
+      <div class="hero-contact__avatars">
+        <img src="/images/photo.jpg" alt="Expert 1" />
+        <img src="/images/img2.jpg" alt="Expert 2" />
+        <img src="/images/photo.jpg" alt="Expert 3" />
+        <span class="hero-contact__more">+5</span>
       </div>
 
-      <div class="col-lg-5">
-        <div class="deploy-card" aria-label="Example production deployment status">
-          <div class="card-heading">
-            <div class="window-dots" aria-hidden="true"><i></i><i></i><i></i></div>
-            <span>production deploy</span>
-          </div>
-          <div class="terminal">
-            <p class="command"><span>$</span> expressdev deploy --env production</p>
-            <p><span class="check">✓</span> Build passed <span class="muted">(412 tests)</span></p>
-            <p><span class="check">✓</span> Security scan: 0 critical</p>
-            <p><span class="check">✓</span> Deployed to 3 regions in 48s</p>
-            <div class="live-status"><span></span> Live · uptime 99.99%</div>
-          </div>
-          <div class="card-footer">
-            <span>All systems operational</span>
-            <span class="footer-indicator">●</span>
+      <div class="hero-contact__content">
+        <h3>Get in touch with an expert</h3>
+        <p>Have a question?</p>
+
+        <div class="hero-contact__actions">
+          <a href="#contact" mat-flat-button  class="hero-contact__button">
+            <span>Chat Now</span>
+            <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
+          </a>
+
+          <div class="hero-contact__social">
+            <a href="https://www.linkedin.com/" target="_blank"
+              rel="noopener noreferrer" aria-label="LinkedIn">
+              <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="https://wa.me/" target="_blank"
+              rel="noopener noreferrer" aria-label="WhatsApp">
+              <i class="bi bi-whatsapp"></i>
+            </a>
+            <a href="https://www.instagram.com/" target="_blank"
+              rel="noopener noreferrer" aria-label="Instagram">
+              <i class="bi bi-instagram"></i>
+            </a>
+            <a href="https://www.youtube.com/" target="_blank"
+              rel="noopener noreferrer" aria-label="YouTube">
+              <i class="bi bi-youtube"></i>
+            </a>
           </div>
         </div>
       </div>
     </div>
+
+
   </div>
 </section>
