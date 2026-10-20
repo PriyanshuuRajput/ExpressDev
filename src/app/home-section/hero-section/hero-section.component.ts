@@ -1,5 +1,5 @@
 import { NgClass } from '@angular/common';
-import { Component, ViewEncapsulation, computed, signal } from '@angular/core';
+import {Component,OnDestroy,OnInit,ViewEncapsulation,computed,signal,} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -40,7 +40,17 @@ interface Link {
   styleUrl: './hero-section.component.less',
   encapsulation: ViewEncapsulation.None,
 })
-export class HeroSectionComponent {
+
+export class HeroSectionComponent implements OnInit, OnDestroy {
+  private autoSlideInterval?: ReturnType<typeof setInterval>;
+
+  direction = signal<'left' | 'right'>('left');
+  readonly slideDuration = 5000;
+  readonly timerProgress = signal(0);
+
+  private timerInterval?: ReturnType<typeof setInterval>;
+  private timerStartedAt = 0;
+  
   readonly slides: Slide[] = [
     {
       id: 'software',
@@ -49,7 +59,7 @@ export class HeroSectionComponent {
       eyebrow: 'Software & digital engineering',
       titleMain: 'Build what’s next.',
       titleAccent: 'Better.',
-      text: 'Custom software, cloud platforms and AI solutions built around your business.',
+      text: 'Custom software, cloud platforms and AI solutions for your business.',
       cta: 'Explore our services',
     },
     {
@@ -57,9 +67,9 @@ export class HeroSectionComponent {
       tabLabel: 'Cloud & AI',
       tabClass: 'hero-tab--cloud',
       eyebrow: 'Cloud & AI',
-      titleMain: 'Scale with confidence.',
+      titleMain: 'Scale with.',
       titleAccent: 'Smarter.',
-      text: 'Cloud-native architecture, data platforms and applied AI that move your business faster.',
+      text: 'Modern cloud, data and AI solutions to accelerate your growth.',
       cta: 'See cloud services',
     },
     {
@@ -69,26 +79,42 @@ export class HeroSectionComponent {
       eyebrow: 'Digital products',
       titleMain: 'Design products',
       titleAccent: 'people love.',
-      text: 'Research-led product design and engineering, from first prototype to global launch.',
+      text: 'User-focused design and engineering from concept to launch.',
       cta: 'View product work',
+    },
+    {
+      id: 'company',
+      tabLabel: 'Company overview',
+      tabClass: 'hero-tab--company',
+      eyebrow: 'Company overview',
+      titleMain: 'A partner you can',
+      titleAccent: 'rely on.',
+      text: 'Expert teams and reliable delivery for long-term partnerships.',
+      cta: 'About our company',
     },
   ];
 
   readonly services: Service[] = [
-  { icon: 'bi bi-code-slash', label: 'Custom software' },
-  { icon: 'bi bi-cloud', label: 'Cloud engineering' },
-  { icon: 'bi bi-bar-chart-line', label: 'AI & data' },
-  { icon: 'bi bi-boxes', label: 'Product design' },
-];
+    { icon: 'bi bi-code-slash', label: 'Custom software' },
+    { icon: 'bi bi-cloud', label: 'Cloud engineering' },
+    { icon: 'bi bi-bar-chart-line', label: 'AI & data' },
+    { icon: 'bi bi-boxes', label: 'Product design' },
+  ];
 
   readonly active = signal(0);
 
   readonly current = computed(() => [this.slides[this.active()]]);
 
-  readonly sideTabs = computed(() =>
+  readonly leftTabs = computed(() =>
     this.slides
       .map((slide, index) => ({ slide, index }))
-      .filter(({ index }) => index !== this.active()),
+      .filter(({ index }) => index < this.active()),
+  );
+
+  readonly rightTabs = computed(() =>
+    this.slides
+      .map((slide, index) => ({ slide, index }))
+      .filter(({ index }) => index > this.active()),
   );
 
   readonly nodes: Node[] = [];
@@ -98,20 +124,74 @@ export class HeroSectionComponent {
     this.buildNetwork();
   }
 
-  pad(n: number): string {
-    return n.toString().padStart(2, '0');
+  ngOnInit(): void {
+    this.startAutoSlide();
+  }
+
+  ngOnDestroy(): void {
+    this.stopAutoSlide();
   }
 
   go(index: number): void {
+    if (index === this.active()) return;
+
+    this.direction.set(index > this.active() ? 'left' : 'right');
     this.active.set(index);
+    this.restartAutoSlide();
   }
 
   next(): void {
-    this.active.update((i) => (i + 1) % this.slides.length);
+    this.direction.set('left');
+    this.active.update(i => (i + 1) % this.slides.length);
+    this.restartAutoSlide();
   }
 
   prev(): void {
-    this.active.update((i) => (i - 1 + this.slides.length) % this.slides.length);
+    this.direction.set('right');
+    this.active.update(
+      i => (i - 1 + this.slides.length) % this.slides.length
+    );
+    this.restartAutoSlide();
+  }
+
+  private startAutoSlide(): void {
+    this.stopAutoSlide();
+    this.timerStartedAt = Date.now();
+    this.timerProgress.set(0);
+
+    this.autoSlideInterval = setInterval(() => {
+      this.direction.set('left');
+      this.active.update(i => (i + 1) % this.slides.length);
+      this.timerStartedAt = Date.now();
+      this.timerProgress.set(0);
+    }, this.slideDuration);
+
+    this.timerInterval = setInterval(() => {
+      const elapsed = Date.now() - this.timerStartedAt;
+      this.timerProgress.set(
+        Math.min((elapsed / this.slideDuration) * 100, 100)
+      );
+    }, 50);
+  }
+
+  private stopAutoSlide(): void {
+    if (this.autoSlideInterval) {
+      clearInterval(this.autoSlideInterval);
+      this.autoSlideInterval = undefined;
+    }
+
+    if (this.timerInterval) {
+      clearInterval(this.timerInterval);
+      this.timerInterval = undefined;
+    }
+  }
+
+  private restartAutoSlide(): void {
+    this.startAutoSlide();
+  }
+
+  pad(n: number): string {
+    return n.toString().padStart(2, '0');
   }
 
   private buildNetwork(): void {
