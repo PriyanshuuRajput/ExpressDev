@@ -1,162 +1,8 @@
-
-<section class="hero container-fluid px-3 px-lg-4 py-4">
+<section class="hero container-fluid px-4 px-lg-4 py-4">
   <div class="hero__stage d-flex gap-2 gap-lg-3">
 
-    <!-- Left tab: Company overview -->
-    <button
-      type="button"
-      class="hero-tab hero-tab--company d-none d-lg-flex flex-column align-items-center"
-      aria-label="Company overview"
-      (click)="go(0)"
-    >
-      <span class="hero-tab__line"></span>
-      <span class="hero-tab__label">Company overview</span>
-      <span class="hero-tab__plus">
-        <i class="bi bi-plus-lg" aria-hidden="true"></i>
-      </span>
-    </button>
-
-    <!-- Main carousel -->
-    <article class="hero-main flex-grow-1">
-
-      <!-- Network artwork -->
-      <svg
-        class="hero-main__network"
-        viewBox="0 0 1000 600"
-        preserveAspectRatio="xMidYMid slice"
-        aria-hidden="true"
-        focusable="false"
-      >
-        <defs>
-          <filter
-            id="hero-glow"
-            x="-100%"
-            y="-100%"
-            width="300%"
-            height="300%"
-          >
-            <feGaussianBlur stdDeviation="5" />
-          </filter>
-
-          <radialGradient id="hero-hub">
-            <stop offset="0" stop-color="#ffd9a8" />
-            <stop offset="0.45" stop-color="#ff8a2a" />
-            <stop offset="1" stop-color="#ff8a2a" stop-opacity="0" />
-          </radialGradient>
-        </defs>
-
-        @for (l of links; track $index) {
-          <path
-            [attr.d]="l.d"
-            fill="none"
-            [attr.stroke]="l.hub ? '#ff9a3c' : '#2fc4f0'"
-            [attr.stroke-opacity]="l.hub ? 0.55 : 0.32"
-            stroke-width="0.8"
-          />
-        }
-
-        @for (n of nodes; track $index) {
-          @if (n.hub) {
-            <circle
-              [attr.cx]="n.x"
-              [attr.cy]="n.y"
-              [attr.r]="n.r * 7"
-              fill="url(#hero-hub)"
-            />
-            <circle
-              [attr.cx]="n.x"
-              [attr.cy]="n.y"
-              [attr.r]="n.r"
-              fill="#fff4e0"
-              filter="url(#hero-glow)"
-            />
-            <circle
-              [attr.cx]="n.x"
-              [attr.cy]="n.y"
-              [attr.r]="n.r * 0.6"
-              fill="#ffffff"
-            />
-          } @else {
-            <circle
-              [attr.cx]="n.x"
-              [attr.cy]="n.y"
-              [attr.r]="n.r"
-              fill="#8fe4ff"
-              fill-opacity="0.9"
-            />
-          }
-        }
-      </svg>
-
-      <div class="hero-main__shade"></div>
-
-      <div class="hero-main__inner d-flex flex-column h-100">
-
-        <div class="row flex-grow-1 align-items-center g-0">
-          @for (s of current(); track s.id) {
-            <div class="col-12 col-lg-8 col-xl-7 hero-copy">
-
-              <p class="hero-eyebrow">{{ s.eyebrow }}</p>
-
-              <h1 class="hero-title">
-                {{ s.titleMain }}<br />
-                <span class="hero-title__accent">
-                  {{ s.titleAccent }}
-                </span>
-              </h1>
-
-              <p class="hero-text">{{ s.text }}</p>
-
-              <button mat-flat-button type="button" class="hero-cta">
-                {{ s.cta }}
-                <i class="bi bi-arrow-right" aria-hidden="true"></i>
-              </button>
-
-            </div>
-          }
-        </div>
-
-        <!-- Services and navigation -->
-        <div
-          class="hero-footer d-flex align-items-center justify-content-between flex-wrap gap-3"
-        >
-          <ul
-            class="hero-services list-unstyled d-none d-md-flex align-items-center mb-0"
-          >
-            @for (s of services; track s.label) {
-              <li class="d-flex align-items-center gap-2">
-                <i [class]="s.icon" aria-hidden="true"></i>
-                <span>{{ s.label }}</span>
-              </li>
-            }
-          </ul>
-
-          <div class="hero-arrows d-flex gap-2 ms-auto">
-            <button
-              type="button"
-              class="hero-arrow"
-              aria-label="Previous slide"
-              (click)="prev()"
-            >
-              <i class="bi bi-chevron-left" aria-hidden="true"></i>
-            </button>
-
-            <button
-              type="button"
-              class="hero-arrow"
-              aria-label="Next slide"
-              (click)="next()"
-            >
-              <i class="bi bi-chevron-right" aria-hidden="true"></i>
-            </button>
-          </div>
-        </div>
-
-      </div>
-    </article>
-
-    <!-- Right tabs -->
-    @for (t of sideTabs(); track t.slide.id; let i = $index) {
+    <!-- LEFT tabs: slides before the active one -->
+    @for (t of leftTabs(); track t.slide.id) {
       <button
         type="button"
         class="hero-tab d-none d-lg-flex flex-column align-items-center"
@@ -171,8 +17,119 @@
       </button>
     }
 
+    <article class="hero-main flex-grow-1">
 
-   
+      <svg
+        class="hero-main__network"
+        viewBox="0 0 1000 600"
+        preserveAspectRatio="xMidYMid slice"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <defs>
+          <filter id="hero-glow" x="-100%" y="-100%" width="300%" height="300%">
+            <feGaussianBlur stdDeviation="5" />
+          </filter>
+
+          <radialGradient id="hero-hub">
+            <stop offset="0" stop-color="#ffd9a8" />
+            <stop offset="0.45" stop-color="#ff8a2a" />
+            <stop offset="1" stop-color="#ff8a2a" stop-opacity="0" />
+          </radialGradient>
+        </defs>
+
+        @for (l of links; track $index) {
+          <path [attr.d]="l.d"  fill="none"
+            [attr.stroke]="l.hub ? '#ff9a3c' : '#2fc4f0'"
+            [attr.stroke-opacity]="l.hub ? 0.55 : 0.32"
+            stroke-width="0.8"
+          />
+        }
+
+        @for (n of nodes; track $index) {
+          @if (n.hub) {
+            <circle [attr.cx]="n.x" [attr.cy]="n.y" [attr.r]="n.r * 7" fill="url(#hero-hub)" />
+            <circle [attr.cx]="n.x" [attr.cy]="n.y" [attr.r]="n.r" fill="#fff4e0" filter="url(#hero-glow)" />
+            <circle [attr.cx]="n.x" [attr.cy]="n.y" [attr.r]="n.r * 0.6" fill="#ffffff" />
+          } @else {
+            <circle [attr.cx]="n.x" [attr.cy]="n.y" [attr.r]="n.r" fill="#8fe4ff" fill-opacity="0.9" />
+          }
+        }
+      </svg>
+
+      <div class="hero-main__shade"></div>
+
+      <div class="hero-main__inner d-flex flex-column h-100">
+
+        <div class="row flex-grow-1 align-items-center g-0">
+          @for (s of current(); track s.id) {
+            <div class="col-12 col-lg-8 col-xl-7 hero-copy" [attr.data-direction]="direction()">
+              <p class="hero-eyebrow">{{ s.eyebrow }}</p>
+
+              <h1 class="hero-title">
+                {{ s.titleMain }}<br />
+                <span class="hero-title__accent">{{ s.titleAccent }}</span>
+              </h1>
+
+              <p class="hero-text">{{ s.text }}</p>
+
+              <button mat-flat-button type="button" class="hero-cta">
+                {{ s.cta }}
+                <i class="bi bi-arrow-right" aria-hidden="true"></i>
+              </button>
+            </div>
+          }
+        </div>
+        <div class="hero-timer">
+          <div class="hero-timer__info">
+             <span>EXPLORE</span>
+            <span>{{ pad(active() + 1) }} / {{ pad(slides.length) }}
+            </span>
+          </div>
+
+          <div class="hero-timer__track" role="progressbar" aria-label="Carousel timer" [attr.aria-valuenow]="timerProgress()" aria-valuemin="0" aria-valuemax="100">
+            <span class="hero-timer__progress" [style.width.%]="timerProgress()"></span>
+          </div>
+        </div>
+        <div class="hero-footer d-flex align-items-center justify-content-between flex-wrap gap-3">
+          <ul class="hero-services list-unstyled d-none d-md-flex align-items-center mb-0">
+            @for (s of services; track s.label) {
+              <li class="d-flex align-items-center gap-2">
+                <i [class]="s.icon" aria-hidden="true"></i>
+                <span>{{ s.label }}</span>
+              </li>
+            }
+          </ul>
+
+          <div class="hero-arrows d-flex gap-2 ms-auto">
+            <button type="button" class="hero-arrow" aria-label="Previous slide" (click)="prev()">
+              <i class="bi bi-chevron-left" aria-hidden="true"></i>
+            </button>
+
+            <button type="button" class="hero-arrow" aria-label="Next slide" (click)="next()">
+              <i class="bi bi-chevron-right" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </article>
+
+    @for (t of rightTabs(); track t.slide.id) {
+      <button
+        type="button"
+        class="hero-tab d-none d-lg-flex flex-column align-items-center"
+        [ngClass]="t.slide.tabClass"
+        [attr.aria-label]="t.slide.tabLabel"
+        (click)="go(t.index)"
+      >
+        <span class="hero-tab__label">{{ t.slide.tabLabel }}</span>
+        <span class="hero-tab__plus">
+          <i class="bi bi-plus-lg" aria-hidden="true"></i>
+        </span>
+      </button>
+    }
+
     <div class="hero-contact">
       <div class="hero-contact__avatars">
         <img src="/images/photo.jpg" alt="Expert 1" />
@@ -186,33 +143,39 @@
         <p>Have a question?</p>
 
         <div class="hero-contact__actions">
-          <a href="#contact" mat-flat-button  class="hero-contact__button">
+          <a href="#contact" mat-flat-button class="hero-contact__button">
             <span>Chat Now</span>
             <i class="bi bi-arrow-up-right" aria-hidden="true"></i>
           </a>
 
           <div class="hero-contact__social">
-            <a href="https://www.linkedin.com/" target="_blank"
-              rel="noopener noreferrer" aria-label="LinkedIn">
-              <i class="bi bi-linkedin"></i>
+            <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+                <path d="M20.45 2H3.55C2.7 2 2 2.67 2 3.5v17c0 .83.7 1.5 1.55 1.5h16.9c.85 0 1.55-.67 1.55-1.5v-17c0-.83-.7-1.5-1.55-1.5zM7.93 18.5H4.95V9h2.98v9.5zM6.44 7.7a1.73 1.73 0 1 1 0-3.46 1.73 1.73 0 0 1 0 3.46zM19.06 18.5h-2.97v-4.62c0-1.1-.02-2.52-1.54-2.52-1.54 0-1.78 1.2-1.78 2.44v4.7H9.8V9h2.85v1.3h.04c.4-.75 1.37-1.54 2.82-1.54 3.02 0 3.58 1.99 3.58 4.57v5.17z"/>
+              </svg>
             </a>
-            <a href="https://wa.me/" target="_blank"
-              rel="noopener noreferrer" aria-label="WhatsApp">
-              <i class="bi bi-whatsapp"></i>
+
+            <a href="https://wa.me/" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+                <path d="M20.52 3.48A11.86 11.86 0 0 0 12.07 0C5.5 0 .15 5.34.15 11.91c0 2.1.55 4.16 1.6 5.98L.05 24l6.27-1.64a11.9 11.9 0 0 0 5.75 1.46h.01c6.57 0 11.92-5.35 11.92-11.92 0-3.18-1.24-6.17-3.48-8.42zM12.08 21.8a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.72.98.99-3.63-.24-.37a9.87 9.87 0 0 1-1.52-5.28c0-5.46 4.45-9.9 9.91-9.9a9.84 9.84 0 0 1 7.01 2.9 9.84 9.84 0 0 1 2.9 7c0 5.46-4.45 9.9-9.91 9.9zm5.43-7.42c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.08-.15-.67-1.61-.92-2.2-.24-.57-.49-.49-.67-.5h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.87 1.22 3.07c.15.2 2.1 3.2 5.08 4.48.71.31 1.27.5 1.7.64.72.23 1.37.2 1.88.12.58-.09 1.76-.72 2.01-1.42.25-.7.25-1.3.17-1.42-.07-.12-.27-.2-.57-.35z"/>
+              </svg>
             </a>
-            <a href="https://www.instagram.com/" target="_blank"
-              rel="noopener noreferrer" aria-label="Instagram">
-              <i class="bi bi-instagram"></i>
+
+            <a href="https://www.upwork.com/" target="_blank" rel="noopener noreferrer" aria-label="Upwork">
+              <svg viewBox="0 0 24 24" width="20" height="20"xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path fill="currentColor" d="M18.5 7.1c-2.1 0-3.8 1.3-4.7 3.4-.8-1.2-1.5-2.5-2-3.9H8.9v5.2c0 1.5-.8 2.4-2 2.4-1.1 0-1.9-.9-1.9-2.4V6.6H2.2v5.3c0 3 1.9 5 4.7 5 2.9 0 4.8-2 4.8-5v-.5c.5.9 1.1 1.8 1.7 2.5l-1.5 6h2.8l1.1-4.3c.8.4 1.7.6 2.6.6 2.8 0 4.8-2 4.8-4.7 0-2.6-1.9-4.4-4.7-4.4zm-.1 6.7c-.6 0-1.2-.2-1.7-.5l.5-1.8c.4-1.3.9-2 1.7-2 .9 0 1.5.8 1.5 2.1 0 1.3-.8 2.2-2 2.2z"/>
+          </svg>
             </a>
-            <a href="https://www.youtube.com/" target="_blank"
-              rel="noopener noreferrer" aria-label="YouTube">
-              <i class="bi bi-youtube"></i>
+
+            <a href="https://www.fiverr.com/" target="_blank" rel="noopener noreferrer" aria-label="Fiverr">
+               <svg viewBox="0 0 24 24" width="20" height="20"xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path fill="currentColor" d="M18.2 7.2a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6ZM5.1 9.1V7.8c0-2.2 1.4-3.8 3.8-3.8.9 0 1.8.2 2.5.5l-.9 2.6a2.7 2.7 0 0 0-1.2-.3c-.9 0-1.3.5-1.3 1.4v.9h7.7v11H12V12H8v8.1H4.8V12H2.5V9.1h2.6Z"/>
+              </svg>
             </a>
           </div>
         </div>
       </div>
     </div>
-
 
   </div>
 </section>
